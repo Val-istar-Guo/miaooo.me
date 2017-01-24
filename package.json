@@ -1,0 +1,35 @@
+{
+  "name": "val.istar.guo_blog",
+  "version": "1.0.0",
+  "description": "Val.istar.Guo's Blog",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo No test!",
+    "watch": "node_modules/.bin/webpack --watch",
+    "server": "node node_modules/.bin/live-server --host=0.0.0.0 --port=8080 --watch='./dist,./view/index.html' --open='/view' --no-browser",
+    "build": "node_modules/.bin/webpack"
+  },
+  "keywords": [
+    "website",
+    "blog"
+  ],
+  "author": "Val.istar.Guo",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "babel-preset-es2015": "^6.18.0",
+    "css-loader": "^0.26.1",
+    "http-server": "^0.9.0",
+    "live-server": "^1.2.0",
+    "node-sass": "^4.3.0",
+    "sass-loader": "^4.1.1",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.14.0"
+  },
+  "dependencies": {
+    "mysql": "^2.12.0",
+    "normalize.css": "^5.0.0",
+    "vue": "^2.1.8"
+  }
+}
