@@ -1,10 +1,8 @@
 var mysql = require("mysql");
-var fs = require("fs");
+var config = require("./config");
 
 try {
 
-    var config = fs.readFileSync("server.cfg");
-    config = JSON.parse(config.toString());
     module.exports = mysql.createPool({
         host: config.mysql.host,
         user: config.mysql.user,
