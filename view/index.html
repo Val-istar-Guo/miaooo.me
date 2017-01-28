@@ -62,7 +62,7 @@
     <div id="article" v-bind:class="{disappear: !isActive}" v-cloak>
 
         <div class="grid" v-bind:class="{loading: isLoad}">
-            <article v-html="cnt">
+            <article class="article" v-html="cnt">
                 {{cnt}}
             </article>
         </div>

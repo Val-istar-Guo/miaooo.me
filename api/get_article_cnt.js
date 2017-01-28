@@ -3,6 +3,8 @@ var pool = require("../mysql_pool");
 var querystring = require('querystring');
 var path = require("path");
 var https = require('https');
+var config = require("../config.js");
+
 
 /**
  * 读取远程文件
@@ -62,7 +64,7 @@ module.exports = function(url, success, fail) {
             /** 读取文章
              * https://raw.githubusercontent.com/Val-istar-Guo/BlogArticle/dev/articles/*.md
              */
-            var p = path.join("raw.githubusercontent.com/Val-istar-Guo/BlogArticle/dev/articles/", encodeURI(rows[0].path));
+            var p = path.join(config.articleSource, encodeURI(rows[0].path));
 
             readRemoteFile("https://" + p, function(err, data) {
                 if (err) {

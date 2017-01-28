@@ -18,7 +18,20 @@ function route(url, success, fail) {
 
 function viewConductor(url, success, fail) {
 
-    var pathname = url.pathname === "/" ? "/index.html" : url.pathname;
+    var pathname = url.pathname;
+
+    if (pathname === "/" || pathname.indexOf("/article") !== -1) {
+        pathname = "/index.html";
+    } else if (pathname.indexOf("/dist") !== -1 || pathname.indexOf("/fonts") !== -1) {
+        pathname = url.pathname;
+    } else {
+        console.log("Cannot find:" + url.pathname);
+        fail();
+        return;
+    }
+
+    console.log("[view]", pathname);
+
     var filePath = path.join("view", pathname);
     var ext = path.extname(filePath);
 

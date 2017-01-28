@@ -2,4 +2,8 @@ var fs = require("fs");
 
 var config = fs.readFileSync("server.cfg");
 
-module.exports = JSON.parse(config.toString());
+if (config) {
+    module.exports = JSON.parse(config.toString());
+} else {
+    throw new Error("Cannot find server.cfg file");
+}

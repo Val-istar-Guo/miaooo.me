@@ -1,5 +1,6 @@
 /*jshint esversion: 6 */
 import Vue from "vue";
+import "../styles/article.scss";
 
 import m from "./m.js";
 import router from "./router.js";
