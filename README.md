@@ -1,6 +1,13 @@
 # Val.istar.Guo Blog
 
 
+# Feature
+
+* 站点地图
+* 前端url解析
+* article css美化
+* 视差背景
+
 ## HISTORY
 
 ### 版本号说明

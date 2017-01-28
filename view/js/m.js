@@ -1,5 +1,7 @@
 /*jshint esversion: 6 */
 import api from "./api.js";
+import Md from "md";
+
 
 var artList = [];
 
@@ -76,7 +78,10 @@ exports.getArtCntById = function(obj) {
             api.getArticle({
                 id: id,
                 success: function(data) {
-                    art.cnt = data.cnt;
+
+                    var md = new Md();
+                    art.cnt = md.parse(data.cnt).toHTML();
+                    console.log(art.cnt);
                     sFun(art.cnt);
                 },
                 fail: fFun
