@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Val.istar.Guo Blog</title>
+
+    <link rel="stylesheet" href="fonts/ico/iconfont.css">
+</head>
+
+<body>
+
+    <header id="header" v-cloak>
+        <h1><a href="/" v-on:click.stop.prevent="enterHome">{{header}}</a></h1>
+    </header>
+
+    <div id="time-line" v-cloak>
+
+    </div>
+
+    <div id="article-list" v-bind:class="{disappear: !isActive}" v-cloak>
+
+        <div class="grid">
+
+            <ul v-on:click.stop="enterArticle">
+                <li class="top">
+
+                    <span class="time">next</span>
+
+                    <div class="line">
+                        <div class="dot"></div>
+                    </div>
+                    <h5 class="title">没啦没啦</h5>
+                    <p class="des">真的没啦～</p>
+
+                </li>
+
+                <li v-for="article in articles">
+                    <span class="time">{{article.time.month}}.{{article.time.day}}</span>
+                    <div class="line">
+                        <div class="dot"></div>
+                    </div>
+                    <h5 class="title">{{article.title}}</h5>
+                    <p class="des">{{article.des}}</p>
+                    <a v-bind:href="'/article?id=' + article.id + '&title=' + article.title" class="mask" v-on:click.stop.prevent="enterArticle"></a>
+                </li>
+
+                <li>
+                    <span class="end">S</span>
+                </li>
+
+            </ul>
+
+        </div>
+
+        <footer>© 2017 www.miaooo.me</footer>
+
+    </div>
+
+    <div id="article" v-bind:class="{disappear: !isActive}" v-cloak>
+
+        <div class="grid" v-bind:class="{loading: isLoad}">
+            <article class="article" v-html="cnt">
+                {{cnt}}
+            </article>
+        </div>
+
+
+        <a class="back-to-list iconfont icon-back2" href="/" v-on:click.stop.prevent="back"></a>
+
+        <footer>© 2017 www.miaooo.me</footer>
+
+    </div>
+
+
+    <script src="dist/index.js" charset="utf-8"></script>
+</body>
+
+</html>
