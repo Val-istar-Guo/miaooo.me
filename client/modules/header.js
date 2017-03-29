@@ -1,7 +1,6 @@
 import xs from 'xstream';
-import { run } from '@cycle/run';
- import {div, h1, makeDOMDriver} from '@cycle/dom';
- 
+import { div, h1 } from '@cycle/dom';
+
 function intent(source) {
 }
 
@@ -10,13 +9,13 @@ function model(actions) {
 }
 
 function view(state$) {
-  return state$.map( title => (
+  return state$.map(title => (
     div([
       h1(title),
-    ]);
+    ])
   ));
 }
 
-export default function Header(source) {
-  return {DOM: view(model(intent(source.DOM)))};
+export default function Header() {
+  return {DOM: view(model(intent()))};
 }

@@ -2,62 +2,14 @@ import path from 'path';
 import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
-const clientModuleRules = [
-  {
-    test: /\.jsx?$/,
-
-    use: [
-      {
-        loader: 'babel-loader',
-        options: {
-          presets: [
-            ['es2015', { modules: false }],
-            'react',
-          ],
-
-          plugins: ['transform-runtime', { polyfill: false }],
-        },
-      },
-    ],
-  },
-  {
-    test: /\.scss$/,
-    exclude: /node_modules/,
-
-    use: ExtractTextPlugin.extract({
-      fallbackLoader: 'style-loader',
-
-      loader: [
-        {
-          loader: 'css-loader',
-          options: {
-            modules: true,
-            localIdentName: '[name]__[local]-[hash:base64:5]',
-          },
-        },
-        {
-          loader: 'sass-loader',
-        },
-      ],
-    }),
-  },
-  {
-    test: /\.scss$/,
-    include: /node_modules/,
-
-    use: ['style-loader', 'css-loader', 'sass-loader'],
-  },
-];
-
 export default {
   entry: {
     bundle: 'client',
 
     lib: [
-      'react',
-      'react-dom',
-      'redux',
-      'react-redux',
+      'xstream',
+      '@cycle/run',
+      '@cycle/dom',
             // 'superagent',
     ],
   },
@@ -73,7 +25,52 @@ export default {
   },
 
   module: {
-    rules: clientModuleRules,
+    rules: [
+      {
+        test: /\.jsx?$/,
+
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                ['es2015', { modules: false }],
+                'react',
+              ],
+
+              plugins: ['transform-runtime', { polyfill: false }],
+            },
+          },
+        ],
+      },
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+
+        use: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+
+          loader: [
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                localIdentName: '[name]__[local]-[hash:base64:5]',
+              },
+            },
+            {
+              loader: 'sass-loader',
+            },
+          ],
+        }),
+      },
+      {
+        test: /\.scss$/,
+        include: /node_modules/,
+
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+    ],
   },
 
   plugins: [

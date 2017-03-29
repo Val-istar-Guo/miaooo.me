@@ -1,4 +1,5 @@
-var server = require("./server");
-var router = require("./router/router");
+import server from './server';
+import staticServe from 'koa-static';
 
-server.start(router.route);
+server.use(staticServe('client'))
+  .listen(8080);
