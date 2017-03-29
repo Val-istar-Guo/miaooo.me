@@ -1,4 +1,7 @@
-server.cfg
 .DS_Store
+server.cfg
 node_modules
+
+# Error Log
 npm-debug.log*
+yarn-error.log

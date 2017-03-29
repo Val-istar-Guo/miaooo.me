@@ -1,5 +1,5 @@
 import xs from 'xstream';
-import { div, h2, ul, li, a, p } from '@cycle/dom';
+import { div, h1, h2, ul, li, a, p } from '@cycle/dom';
 
 const articleList = [
   {
@@ -14,18 +14,16 @@ const articleList = [
   },
 ];
 
-// function articleItem(sources) {
-//   const vdom$ = sources.list$
-    // .map(({ id, title, des }) => (
-    //   li('.article-list-item', [
-    //     h2(title),
-    //     p(des),
-    //     a({ href: id }),
-    //   ])
-//     ));
-//
-//   return { DOM: vdom$ };
-// }
+const ArticleItem = (sources) => {
+  const vdom$ = sources.props
+    .map(({ id, title, des }) => li('.article-list-item', [
+      h2(title),
+      p(des),
+      a({ href: id }),
+    ]));
+
+  return { DOM: vdom$ };
+};
 
 function intent(sources) {
   return sources;
@@ -36,27 +34,18 @@ function model(actions) {
 }
 
 function view(state$) {
-  const vdom$ = state$.map((list) => {
-
-    const liDom = list.map(({ id, title, des }) => (
-      li('.article-list-item', [
-        h2(title),
-        p(des),
-        a({ href: id }),
-      ])));
-
-    return xs.combine(...liDom)
-      .map((nodes) => {
-        console.log(nodes);
-        return ul(nodes);
+  return state$.map((list) => {
+    const articleNodes = list
+      .map((article) => {
+        const props$ = xs.of(article);
+        const articleItem = ArticleItem({ props: props$ });
+        return articleItem.DOM;
       });
+
+    return xs.combine(...articleNodes)
+      .map(nodes => ul(nodes));
   })
   .flatten();
-
-  vdom$.map((val) => {
-    console.log(val);
-    return 'a';
-  });
 }
 
 export default function () {
