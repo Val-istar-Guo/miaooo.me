@@ -1,4 +1,5 @@
 import Header from './modules/header';
+import ArticleList from './modules/articleList';
 
 function intent(source) {
 }
@@ -7,7 +8,7 @@ function model(actions) {
 }
 
 function view(state$) {
-  return Header().DOM;
+  return ArticleList().DOM;
 }
 
 export default function (sources) {

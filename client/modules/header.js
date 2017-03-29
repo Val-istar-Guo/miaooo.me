@@ -17,5 +17,5 @@ function view(state$) {
 }
 
 export default function Header() {
-  return {DOM: view(model(intent()))};
+  return { DOM: view(model(intent())) };
 }

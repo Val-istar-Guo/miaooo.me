@@ -1,6 +1,7 @@
 import path from 'path';
 import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 // import ProgressBarPlugin from 'progress-bar-webpack-plugin';
 
 export default {
@@ -22,7 +23,7 @@ export default {
   },
 
   output: {
-    path: '/',
+    path: path.resolve(__dirname, '../dist/client'),
     filename: '[name].js',
     chunkFilename: '[name].js',
     publicPath: '/',
@@ -70,6 +71,10 @@ export default {
 
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
+      {
+        test: /\.html$/,
+        use: 'html-loader',
+      },
     ],
   },
 
@@ -81,6 +86,11 @@ export default {
     new webpack.optimize.CommonsChunkPlugin({
       names: 'lib',
       filename: '[name].js',
+    }),
+
+    new HtmlWebpackPlugin({
+      filename: '../views/index.dev.html',
+      template: './views/index.html',
     }),
 
     new webpack.DefinePlugin({
