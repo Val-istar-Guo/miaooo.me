@@ -5,7 +5,7 @@ function intent(source) {
 }
 
 function model(actions) {
-  return xs.of('VAL.ISTAR.GUO');
+  return xs.of('VAL.ISTAR.GUO123444');
 }
 
 function view(state$) {

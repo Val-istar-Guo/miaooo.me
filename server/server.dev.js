@@ -2,8 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import convert from 'koa-convert';
 import webpack from 'webpack';
-import devMiddleware from 'koa-webpack-dev-middleware';
-import hotMiddleware from 'koa-webpack-hot-middleware';
+import { devMiddleware, hotMiddleware } from 'koa-webpack-middleware';
 
 import app from './app';
 import webpackCfg from '../build/webpack.config.dev';
