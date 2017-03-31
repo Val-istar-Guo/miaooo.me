@@ -1,5 +1,5 @@
 import xs from 'xstream';
-import { h2, ul, li, a, p } from '@cycle/dom';
+import { h2, ul, li, a, span } from '@cycle/dom';
 
 const articleList = [
   {
@@ -25,12 +25,14 @@ function model(actions) {
 function view(state$) {
   return state$.map((list) => {
     const articleNodes = list
-      .map(({ id, title, des }) => li('.article-list-item', [
-        h2(title),
-        p(des),
+      .map(({ id, title, des }) => li('.article-list-item .mdl-list__item mdl-list__item--two-line', [
+        span('.mdl-list__item-primary-content', [
+          span(title),
+          span('.mdl-list__item-sub-title', des),
+        ]),
         a({ href: id }),
       ]));
-    return ul(articleNodes);
+    return ul('.mdl-list', articleNodes);
   });
 }
 

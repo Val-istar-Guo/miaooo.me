@@ -1,11 +1,11 @@
 import xs from 'xstream';
 import { div, h1 } from '@cycle/dom';
 
-function intent(source) {
+function intent() {
 }
 
-function model(actions) {
-  return xs.of('VAL.ISTAR.GUO123444');
+function model() {
+  return xs.of('VAL.ISTAR.GUO');
 }
 
 function view(state$) {

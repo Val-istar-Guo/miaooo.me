@@ -1,0 +1,46 @@
+@import 'color';
+@import 'fonts';
+@import 'size';
+
+body {
+  margin: 0;
+}
+
+.dark-purple {
+  background: $dark-purple;
+}
+
+.dark-purple-text {
+  color: $dark-purple;
+}
+
+.white {
+  background: $white;
+}
+
+.white-text {
+  color: $white;
+}
+
+.page-title {
+  margin: 0px;
+  padding: 46px 0;
+  font-size: 20px;
+}
+
+.container {
+  position: relative;
+}
+
+.fab-bottom {
+  width: $fab-size;
+  height: $fab-size;
+
+  left: 56px;
+  border-radius: 50%;
+
+  &.float {
+    position: absolute;
+    bottom: -$fab-size / 2;
+  }
+}

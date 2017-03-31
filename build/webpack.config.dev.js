@@ -2,7 +2,10 @@ import path from 'path';
 import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-// import ProgressBarPlugin from 'progress-bar-webpack-plugin';
+import ProgressBarPlugin from 'progress-bar-webpack-plugin';
+
+const extractSCSS = new ExtractTextPlugin('styles/[name]-style.css');
+const extractCSS = new ExtractTextPlugin('styles/lib.css');
 
 export default {
   devtool: 'source-map',
@@ -18,7 +21,8 @@ export default {
       'xstream',
       '@cycle/run',
       '@cycle/dom',
-            // 'superagent',
+      '@cycle/isolate',
+      '@cycle/http',
     ],
   },
 
@@ -48,16 +52,15 @@ export default {
         test: /\.scss$/,
         exclude: /node_modules/,
 
-        use: ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader',
-
-          loader: [
+        use: extractSCSS.extract({
+          fallback: 'style-loader',
+          use: [
             {
               loader: 'css-loader',
-              options: {
-                modules: true,
-                localIdentName: '[name]__[local]-[hash:base64:5]',
-              },
+              // options: {
+              //   modules: true,
+              //   localIdentName: '[name]__[local]-[hash:base64:5]',
+              // },
             },
             {
               loader: 'sass-loader',
@@ -66,22 +69,38 @@ export default {
         }),
       },
       {
-        test: /\.scss$/,
+        test: /\.css$/,
         include: /node_modules/,
-
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        // use: ['style-loader', 'css-loader'],
+        use: extractCSS.extract({
+          fallback: 'style-loader',
+          use: 'css-loader',
+        }),
       },
       {
         test: /\.html$/,
         use: 'html-loader',
       },
+      {
+        test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+            },
+          },
+        ],
+      },
     ],
   },
 
   plugins: [
+    extractSCSS,
+    extractCSS,
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    // new ProgressBarPlugin({ summary: false }),
+    new ProgressBarPlugin({ summary: false }),
 
     new webpack.optimize.CommonsChunkPlugin({
       names: 'lib',
