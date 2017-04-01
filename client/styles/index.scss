@@ -1,30 +1,20 @@
 @import 'color';
 @import 'fonts';
 @import 'size';
+@import 'shadow';
+@import 'grid';
+
+@import 'button';
+@import 'list';
+@import 'from';
 
 body {
   margin: 0;
 }
 
-.dark-purple {
-  background: $dark-purple;
-}
-
-.dark-purple-text {
-  color: $dark-purple;
-}
-
-.white {
-  background: $white;
-}
-
-.white-text {
-  color: $white;
-}
-
 .page-title {
   margin: 0px;
-  padding: 46px 0;
+  padding: 46px 24px;
   font-size: 20px;
 }
 
@@ -32,15 +22,49 @@ body {
   position: relative;
 }
 
-.fab-bottom {
-  width: $fab-size;
-  height: $fab-size;
+.cover-partner-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 
-  left: 56px;
-  border-radius: 50%;
+.full-screen-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
 
-  &.float {
-    position: absolute;
-    bottom: -$fab-size / 2;
-  }
+.remaind-box {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  padding: 10px 0;
+}
+
+.center-box {
+  text-align: center;
+}
+
+.vertical-box {
+  position: table;
+}
+.vertical-center {
+  position  : absolute;
+  top       : 50%;
+  left      : 50%;
+  transform : translate(-50%,-50%);
+}
+
+.covering {
+  z-index: 100;
+}
+
+.up-covering {
+  z-index: 101;
 }

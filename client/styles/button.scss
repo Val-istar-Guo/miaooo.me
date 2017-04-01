@@ -1,0 +1,30 @@
+.fab-bottom {
+  width: $fab-size;
+  height: $fab-size;
+  outline: none;
+  border: none;
+  padding: 0;
+
+  right: $fab-size;
+  border-radius: 50%;
+
+  &.float {
+    position: absolute;
+    bottom: -$fab-size / 2;
+  }
+}
+
+.button {
+  display: inline-block;
+
+  padding: 10px 36px;
+  border: none;
+  outline: none;
+
+  font-size: 16px;
+	font-weight: lighter;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: normal;
+	letter-spacing: 2px;
+}

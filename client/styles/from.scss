@@ -1,0 +1,43 @@
+@import 'color';
+
+.icon-text-input {
+  display: inline-block;
+
+  border-bottom: 2px solid map-get($colors, dark-purple);
+
+  .input {
+    box-sizing:border-box;
+
+    display: block;
+    width: 100%;
+
+    padding-left: 32px;
+
+    background: transparent;
+    border: none;
+
+    font-size: 24px;
+    outline: none;
+  }
+
+  .icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    font-size: 24px;
+  }
+
+}
+
+.input-weight-lighter {
+  border-bottom-width: 1px;
+}
+
+.input-weight-normal {
+  border-bottom-width: 2px;
+}
+
+.input-weight-bloder {
+  border-bottom-width: 3px;
+}

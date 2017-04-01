@@ -1,16 +1,16 @@
 import xs from 'xstream';
-import { h2, ul, li, a, span } from '@cycle/dom';
+import { ul, li, a, span } from '@cycle/dom';
 
 const articleList = [
   {
     id: 1,
-    title: 'article title1',
-    des: 'descriptions',
+    title: 'Article title1',
+    des: 'Descriptions',
   },
   {
     id: 2,
-    title: 'article title',
-    des: 'descriptions',
+    title: 'Article title',
+    des: 'Descriptions',
   },
 ];
 
@@ -25,14 +25,14 @@ function model(actions) {
 function view(state$) {
   return state$.map((list) => {
     const articleNodes = list
-      .map(({ id, title, des }) => li('.article-list-item .mdl-list__item mdl-list__item--two-line', [
-        span('.mdl-list__item-primary-content', [
-          span(title),
-          span('.mdl-list__item-sub-title', des),
+      .map(({ id, title, des }) => li('.list-item', [
+        span([
+          span('.list-title .greyish-text', title),
+          span('.list-des .warm-grey-text', des),
         ]),
         a({ href: id }),
       ]));
-    return ul('.mdl-list', articleNodes);
+    return ul('.list', articleNodes);
   });
 }
 

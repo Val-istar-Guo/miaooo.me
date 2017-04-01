@@ -1,0 +1,5 @@
+@for $i from 1 through 12 {
+  .width-#{$i} {
+    width: 100% * $i / 12;
+  }
+}

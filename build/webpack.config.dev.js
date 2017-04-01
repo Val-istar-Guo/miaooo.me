@@ -23,6 +23,7 @@ export default {
       '@cycle/dom',
       '@cycle/isolate',
       '@cycle/http',
+      '@cycle/history',
     ],
   },
 
