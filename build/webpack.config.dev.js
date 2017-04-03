@@ -44,7 +44,10 @@ export default {
             loader: 'babel-loader',
             options: {
               presets: [['es2015', { modules: false }]],
-              plugins: [['transform-runtime', { polyfill: false }]],
+              plugins: [
+                ['transform-runtime', { polyfill: false }],
+                ['transform-object-rest-spread'],
+              ],
             },
           },
         ],

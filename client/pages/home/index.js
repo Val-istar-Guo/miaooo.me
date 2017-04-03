@@ -3,7 +3,6 @@ import { div, h1 } from '@cycle/dom';
 
 import Header from './modules/header';
 import ArticleList from './modules/articleList';
-import SignInBar from './modules/signInBar';
 
 function intent(sources) {
   return sources.HOT;
@@ -15,8 +14,7 @@ function model(actions) {
 
 function view(state$, domSource) {
   const header$ = Header({ DOM: domSource }).DOM;
-  const articleList$ = ArticleList().DOM;
-  const signInBar$ = SignInBar({ DOM: domSource }).DOM;
+  const articleList$ = ArticleList({ DOM: domSource }).DOM;
 
   const ascNum$ = state$
     .map((val) => {
@@ -25,11 +23,10 @@ function view(state$, domSource) {
     })
     .map(val => h1(val));
 
-  return xs.combine(ascNum$, header$, articleList$, signInBar$)
-    .map(([ascNum, header, articleList, signInBar]) => div([
+  return xs.combine(ascNum$, header$, articleList$)
+    .map(([ascNum, header, articleList]) => div([
       header,
       articleList,
-      signInBar,
       ascNum,
     ]));
 }

@@ -1,8 +1,11 @@
 @import 'color';
 
+.form {
+  padding: 40px 46px;
+}
+
 .icon-text-input {
   display: inline-block;
-
   border-bottom: 2px solid map-get($colors, dark-purple);
 
   .input {
@@ -28,6 +31,21 @@
     font-size: 24px;
   }
 
+}
+
+.normal-input {
+  display: inline-block;
+  margin: 30px 0;
+  border-bottom: 1px solid map-get($colors, dark-purple);
+
+  .input {
+    display: block;
+    width: 100%;
+
+    font-size: 16px;
+    outline: none;
+
+  }
 }
 
 .input-weight-lighter {

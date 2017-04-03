@@ -30,10 +30,8 @@ compiler.plugin('emit', (compilation, callback) => {
   callback();
 });
 
-
 app.use(convert(devMiddleware(compiler, {
   publicPath: webpackCfg.output.publicPath,
-  noInfo: true,
 })));
 app.use(convert(hotMiddleware(compiler)));
 app.listen(8080);

@@ -10,13 +10,13 @@ import fs from 'fs';
 function getExternals() {
   /* eslint-disable no-param-reassign */
   return fs.readdirSync(path.resolve(__dirname, './node_modules'))
-        // .bin目录保存模块带来的终端命令，并非模块
-        .filter(filename => !filename.includes('.bin'))
-        // 指定模块为commonjs规范
-        .reduce((externals, filename) => {
-          externals[filename] = `commonjs ${filename}`;
-          return externals;
-        }, {});
+      // .bin目录保存模块带来的终端命令，并非模块
+      .filter(filename => !filename.includes('.bin'))
+      // 指定模块为commonjs规范
+      .reduce((externals, filename) => {
+        externals[filename] = `commonjs ${filename}`;
+        return externals;
+      }, {});
   /* eslint-enable no-param-reassign */
 }
 
@@ -53,9 +53,5 @@ export default {
         }],
       },
     ],
-  },
-
-  resolve: {
-    extensions: autoFixExtension,
   },
 };

@@ -1,42 +1,33 @@
 import xs from 'xstream';
 import { ul, li, a, span } from '@cycle/dom';
 
-const articleList = [
-  {
-    id: 1,
-    title: 'Article title1',
-    des: 'Descriptions',
-  },
-  {
-    id: 2,
-    title: 'Article title',
-    des: 'Descriptions',
-  },
-];
+import articles from '../../../modules/articles';
 
-function intent(sources) {
-  return sources;
+function intent(domSource) {
 }
 
 function model(actions) {
-  return actions;
+  return xs.of(articles);
 }
 
 function view(state$) {
   return state$.map((list) => {
     const articleNodes = list
-      .map(({ id, title, des }) => li('.list-item', [
+      .map(({ id, title, des }) => li('.list-item .container', [
         span([
           span('.list-title .greyish-text', title),
           span('.list-des .warm-grey-text', des),
         ]),
-        a({ href: id }),
+        a('.J_article-link .cover-partner-box', { attrs: { href: `/article?id=${id}` } }),
       ]));
     return ul('.list', articleNodes);
   });
 }
 
-export default function () {
-  const source$ = xs.of(articleList);
-  return { DOM: view(model(intent(source$))) };
+export default function (sources) {
+  const actions = intent(sources.DOM);
+  const state$ = model(actions);
+  const vdom$ = view(state$, sources.DOM);
+
+  return { DOM: vdom$ };
 }

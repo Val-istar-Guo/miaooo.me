@@ -44,7 +44,6 @@ router.get('/', async (ctx) => {
 
 ap.use(views(path.resolve(__dirname, '../views'), { map: { html: 'ejs' } }))
   .use(logger())
-  .use(router.routes())
-  .use(router.allowedMethods());
+  .use(router.routes());
 
 export default ap;
