@@ -20,8 +20,6 @@ function view(state$, sources) {
     if (clicked) {
       const signInForm$ = SignInForm(sources);
 
-
-
       vdom$ = signInForm$.DOM
         .map(signInForm => (
           div([
@@ -30,7 +28,14 @@ function view(state$, sources) {
           ])
         ));
     } else {
-      vdom$ = xs.of(div(
+      vdom$ = sources.SIGNIN_TEST.map(config => (
+        div(
+          '.remaind-box .center-box .pale-gold .source-code-pro .shadow-deep-1',
+          [
+            p('.greyish-text', config.message),
+            button('.J_sign-in .button .shadow-deep-2 .white .center', 'SIGN IN'),
+          ])
+      )).startWith(div(
         '.remaind-box .center-box .pale-gold .source-code-pro .shadow-deep-1',
         [
           p('.greyish-text', 'DO YOU LIKE THIS BLOG'),

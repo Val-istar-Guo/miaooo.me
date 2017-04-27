@@ -61,6 +61,8 @@
     "md": "https://github.com/Val-istar-Guo/Md.git",
     "mysql": "^2.13.0",
     "normalize.css": "^6.0.0",
+    "v-abtest-data": "^0.0.8",
+    "v-abtest-test": "^0.0.1",
     "xstream": "^10.3.0"
   },
   "directories": {

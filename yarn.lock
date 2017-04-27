@@ -2102,7 +2102,7 @@ form-data@^2.1.1, form-data@~2.1.1:
     combined-stream "^1.0.5"
     mime-types "^2.1.12"
 
-formidable@^1.0.17:
+formidable@^1.0.17, formidable@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/formidable/-/formidable-1.1.1.tgz#96b8886f7c3c3508b932d6bd70c4d3a88f35f1a9"
 
@@ -4668,6 +4668,21 @@ superagent@3.4.1:
     qs "^6.1.0"
     readable-stream "^2.0.5"
 
+superagent@^3.5.2:
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/superagent/-/superagent-3.5.2.tgz#3361a3971567504c351063abeaae0faa23dbf3f8"
+  dependencies:
+    component-emitter "^1.2.0"
+    cookiejar "^2.0.6"
+    debug "^2.2.0"
+    extend "^3.0.0"
+    form-data "^2.1.1"
+    formidable "^1.1.1"
+    methods "^1.1.1"
+    mime "^1.3.4"
+    qs "^6.1.0"
+    readable-stream "^2.0.5"
+
 supports-color@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-2.0.0.tgz#535d045ce6b6363fa40117084629995e9df324c7"
@@ -4923,6 +4938,16 @@ uuid@^2.0.2:
 uuid@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.0.1.tgz#6544bba2dfda8c1cf17e629a3a305e2bb1fee6c1"
+
+v-abtest-data@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/v-abtest-data/-/v-abtest-data-0.0.8.tgz#35a058052f9e8fd35198aed281dc207b746743fd"
+  dependencies:
+    superagent "^3.5.2"
+
+v-abtest-test@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/v-abtest-test/-/v-abtest-test-0.0.1.tgz#c2754edbef5c8b57a1028a6d9d3ee4a777010859"
 
 v8flags@^2.0.10:
   version "2.0.11"
