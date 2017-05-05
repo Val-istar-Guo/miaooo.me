@@ -53,7 +53,7 @@ module.exports = {
     staging: {
       user: 'docker',
       host: 'docker',
-      ref: 'origin/feature/refactor',
+      ref: 'origin/feature-refactor',
       repo: 'https://github.com/Val-istar-Guo/Blog.git',
       path: '/home/docker/abtest-demo/dev',
       'post-deploy': 'yarn; pm2 startOrRestart ecosystem.config.js --only dev-abtest-demo --env staging',
