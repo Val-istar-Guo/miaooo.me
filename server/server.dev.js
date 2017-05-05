@@ -34,4 +34,4 @@ app.use(convert(devMiddleware(compiler, {
   publicPath: webpackCfg.output.publicPath,
 })));
 app.use(convert(hotMiddleware(compiler)));
-app.listen(8080);
+app.listen(8080, '0.0.0.0');

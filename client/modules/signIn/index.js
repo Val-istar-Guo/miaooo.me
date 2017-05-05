@@ -1,7 +1,6 @@
 import xs from 'xstream';
 import { div, button, p, a } from '@cycle/dom';
-
-import SignInForm from './signInForm';
+import { setUser } from 'v-abtest-data';
 
 function intent(domSource) {
   return {
@@ -18,29 +17,27 @@ function view(state$, sources) {
     let vdom$ = null;
 
     if (clicked) {
-      const signInForm$ = SignInForm(sources);
-
-      vdom$ = signInForm$.DOM
-        .map(signInForm => (
-          div([
-            div('.J_cancle .full-screen-box .covering .translucent-black'),
-            signInForm,
-          ])
-        ));
+      // const signInForm$ = SignInForm(sources);
+      setUser({
+        tags: [1, 3],
+      });
+      // vdom$ = signInForm$.DOM
+      //   .map(signInForm => (
+      //     div([
+      //       div('.J_cancle .full-screen-box .covering .translucent-black'),
+      //       signInForm,
+      //     ])
+      //   ));
+      vdom$ = xs.of(div());
     } else {
-      vdom$ = sources.SIGNIN_TEST.map(config => (
+      vdom$ = sources.SIGNIN_BACKGROUND.map(config => (
         div(
-          '.remaind-box .center-box .pale-gold .source-code-pro .shadow-deep-1',
+          `.remaind-box .center-box .${config.background} .source-code-pro .shadow-deep-1`,
           [
-            p('.greyish-text', config.message),
+            p('.greyish-text', 'DO YOU LIKE MY BLOG'),
             button('.J_sign-in .button .shadow-deep-2 .white .center', 'SIGN IN'),
           ])
-      )).startWith(div(
-        '.remaind-box .center-box .pale-gold .source-code-pro .shadow-deep-1',
-        [
-          p('.greyish-text', 'DO YOU LIKE THIS BLOG'),
-          button('.J_sign-in .button .shadow-deep-2 .white .center', 'SIGN IN'),
-        ]));
+      )).startWith(div());
     }
 
     return vdom$;

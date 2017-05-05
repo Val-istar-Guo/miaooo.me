@@ -6,12 +6,17 @@ import articles from '../../../modules/articles';
 function intent(domSource) {
 }
 
-function model(actions) {
-  return xs.of(articles);
+function model(actions, sources) {
+  return sources.LIST_ORDER
+    .map((config) => {
+      if (config.reverse) articles.reverse();
+      return articles;
+    });
 }
 
 function view(state$) {
-  return state$.map((list) => {
+  return state$
+    .map((list) => {
     const articleNodes = list
       .map(({ id, title, des }) => li('.list-item .container', [
         span([
@@ -26,8 +31,8 @@ function view(state$) {
 
 export default function (sources) {
   const actions = intent(sources.DOM);
-  const state$ = model(actions);
-  const vdom$ = view(state$, sources.DOM);
+  const state$ = model(actions, sources);
+  const vdom$ = view(state$);
 
   return { DOM: vdom$ };
 }

@@ -12,9 +12,9 @@ function model(actions) {
   return actions;
 }
 
-function view(state$, domSource) {
-  const header$ = Header({ DOM: domSource }).DOM;
-  const articleList$ = ArticleList({ DOM: domSource }).DOM;
+function view(state$, sources) {
+  const header$ = Header(sources).DOM;
+  const articleList$ = ArticleList(sources).DOM;
 
   const ascNum$ = state$
     .map((val) => {
@@ -34,7 +34,7 @@ function view(state$, domSource) {
 export default function (sources) {
   const actions = intent(sources);
   const state$ = model(actions);
-  const vdom$ = view(state$, sources.DOM);
+  const vdom$ = view(state$, sources);
 
   return {
     DOM: vdom$,

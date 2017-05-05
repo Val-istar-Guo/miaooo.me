@@ -10,5 +10,7 @@ export default {
   HTTP: makeHTTPDriver(),
   HISTORY: captureClicks(makeHistoryDriver(createHistory())),
   HOT: makeAscNumDirver(),
-  SIGNIN_TEST: makeABTestDirve(3, { message: 'default' }),
+  SEARCH_BAR: makeABTestDirve(4, { message: 'circle' }),
+  SIGNIN_BACKGROUND: makeABTestDirve(1, { background: 'pale-gold' }),
+  LIST_ORDER: makeABTestDirve(2, { reverse: false }),
 };
