@@ -19,6 +19,7 @@ function view(state$, sources) {
     if (clicked) {
       // const signInForm$ = SignInForm(sources);
       setUser({
+        id: 1,
         tags: [1, 3],
       });
       // vdom$ = signInForm$.DOM
