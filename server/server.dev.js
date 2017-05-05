@@ -8,6 +8,9 @@ import hotMiddleware from 'koa-webpack-hot-middleware';
 import app from './app';
 import webpackCfg from '../build/webpack.config.dev';
 
+const PORT = process.env.PORT || 8080;
+const HOST = process.env.HOST || '0.0.0.0';
+
 const compiler = webpack(webpackCfg);
 
 /**
@@ -34,4 +37,4 @@ app.use(convert(devMiddleware(compiler, {
   publicPath: webpackCfg.output.publicPath,
 })));
 app.use(convert(hotMiddleware(compiler)));
-app.listen(8080, '0.0.0.0');
+app.listen(PORT, HOST);
