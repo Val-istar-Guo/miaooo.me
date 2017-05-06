@@ -9,8 +9,9 @@ function intent(domSource) {
 function model(actions, sources) {
   return sources.LIST_ORDER
     .map((config) => {
-      if (config.reverse) articles.reverse();
-      return articles;
+      const list = [...articles];
+      if (config.reverse) list.reverse();
+      return list;
     });
 }
 
