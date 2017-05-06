@@ -5143,9 +5143,9 @@ uuid@^3.0.0, uuid@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.0.1.tgz#6544bba2dfda8c1cf17e629a3a305e2bb1fee6c1"
 
-v-abtest-data@^0.0.8:
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/v-abtest-data/-/v-abtest-data-0.0.8.tgz#35a058052f9e8fd35198aed281dc207b746743fd"
+v-abtest-data@^0.0.9:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/v-abtest-data/-/v-abtest-data-0.0.9.tgz#b374a21f9c6f06efbef5ad781c24cb40a597efd8"
   dependencies:
     superagent "^3.5.2"
 
