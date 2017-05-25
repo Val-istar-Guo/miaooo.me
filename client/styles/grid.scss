@@ -1,9 +1,0 @@
-@for $i from 1 through 12 {
-  .width-#{$i} {
-    width: 100vw * $i / 12;
-  }
-
-  .top-#{$i} {
-    margin-top: 12px * $i;
-  }
-}

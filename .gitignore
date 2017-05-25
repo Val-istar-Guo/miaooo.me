@@ -1,10 +1,16 @@
+# Mac
 .DS_Store
-server.cfg
-node_modules
 
-# Error Log
+# Editor
+.vscode
+
+# NodeJS
+node_modules
 npm-debug.log*
+
+# Yarn
 yarn-error.log
 
-# Complie
+# Compile
 dist
+views/index.*.html

@@ -1,16 +1,19 @@
-import { run } from '@cycle/run';
+import Vue from 'vue';
+import 'normalize.css';
+import 'material-design-icons';
 
-import app from './app';
-import dirves from './dirves';
+import App from './app';
+import router from './router';
+import store from './store';
+import './styles/index.scss';
 
-let dispose = run(app, dirves);
 
-//
-// if (module.hot) {
-//   module.hot.accept('./app', () => {
-//     dispose();
-//     const newApp = require('./app').default;
-//     console.log(newApp);
-//     dispose = run(newApp, dirves);
-//   });
-// }
+export default new Vue({
+  el: '#app',
+  router,
+  store,
+
+  render(h) {
+    return h(App);
+  },
+});
