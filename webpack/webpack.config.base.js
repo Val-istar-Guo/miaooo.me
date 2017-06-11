@@ -119,6 +119,7 @@ export const base = {
                 ['transform-runtime', { polyfill: false, helpers: false }],
                 ['transform-object-rest-spread'],
                 ['transform-export-extensions'],
+                ['transform-async-to-generator'],
               ],
             },
           },
