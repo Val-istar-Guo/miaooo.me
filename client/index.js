@@ -5,6 +5,7 @@ import 'material-design-icons';
 import App from './app';
 import router from './router';
 import store from './store';
+import './components';
 import './styles/index.scss';
 
 

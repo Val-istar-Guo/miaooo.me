@@ -1,5 +1,7 @@
 import Vue from 'vue';
+import VueMarkdown from 'vue-markdown';
 
+import Loading from './loading';
 // import mInput from './components/form/m-input';
 // import mButton from './components/form/m-button';
 // import mSelect from './components/form/m-select';
@@ -13,4 +15,5 @@ import Vue from 'vue';
 // Vue.component('m-select', mSelect);
 // Vue.component('m-icon-input', mIconInput);
 // Vue.component('icon', icon);
-// Vue.component('loading', loading);
+Vue.component('loading', Loading);
+Vue.component('vue-markdown', VueMarkdown);

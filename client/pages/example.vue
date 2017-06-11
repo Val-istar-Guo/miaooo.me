@@ -2,6 +2,7 @@
   <article>
     <h1>EXAMPLATE PAGE OF VUE-KOA BOILERPLATE</h1>
     <p>Now, do everything you want!</p>
+    <loading></loading>
   </article>
 </template>
 
@@ -32,4 +33,9 @@ export default {
   p {
     text-align: center;
   }
+
+  .loading {
+    text-align: center;
+  }
+
 </style>

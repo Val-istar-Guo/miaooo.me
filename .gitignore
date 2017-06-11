@@ -3,6 +3,7 @@
 
 # Editor
 .vscode
+*.swp
 
 # NodeJS
 node_modules

@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import detectEnv from 'detect-env';
 
+import articles from './articles';
 import * as MUTATIONS from '../contants/mutations';
 
 
@@ -11,6 +12,7 @@ const store = new Vuex.Store({
   strict: detectEnv({ production: false, default: true }),
 
   modules: {
+    articles,
   },
 
   state: {

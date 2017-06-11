@@ -2,14 +2,14 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import Example from './pages/example';
+import Home from './pages/home';
+import Article from './pages/article';
 
 Vue.use(VueRouter);
 
 const routes = [
-  { path: '/', component: Example, alias: ['/home'] },
-  // { path: '/tests/:filter?', component: Tests, alias: ['/home', '/'] },
-  // { path: '/test', component: Test },
-  // { path: '/setting', component: Setting },
+  { path: '/', component: Home, alias: ['/home'] },
+  { path: '/article/:name', component: Article }
 ];
 
 export default new VueRouter({
