@@ -44,7 +44,7 @@ module.exports = {
       user: 'docker',
       host: 'docker',
       ref: 'origin/master',
-      repo: 'https://github.com/Val-istar-Guo/vue-boilerplate.git',
+      repo: 'https://github.com/Val-istar-Guo/blog.git',
       path: path.join('/home/docker', APP_NAME, 'production'),
       'post-deploy': `yarn; npm run build:prod; pm2 startOrRestart ecosystem.config.js --only ${APP_NAME} --env production`,
 
@@ -56,7 +56,7 @@ module.exports = {
       user: 'docker',
       host: 'docker',
       ref: 'origin/dev',
-      repo: 'https://github.com/Val-istar-Guo/vue-boilerplate.git',
+      repo: 'https://github.com/Val-istar-Guo/blog.git',
       path: path.join('/home/docker', APP_NAME, 'staging'),
       'post-deploy': `yarn; pm2 startOrRestart ecosystem.config.js --only ${APP_NAME}-staging --env staging`,
     },
