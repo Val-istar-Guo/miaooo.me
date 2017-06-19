@@ -16,6 +16,7 @@ const store = new Vuex.Store({
   },
 
   state: {
+    ispc: (typeof window !== 'undefined' && document.documentElement.clientWidth > 1024) ? true : false,
     time: { server: new Date().getTime(), client: new Date().getTime() },
   },
 
@@ -33,6 +34,13 @@ const store = new Vuex.Store({
         server: payload.serverTime,
         client: new Date().getTime(),
       };
+    },
+    [MUTATIONS.RECALCULATE_DIVICE_SIZE](state, payload) {
+      if (typeof window !== 'undefined' && payload.width > 1024) {
+        state.ispc = true;
+      } else {
+        state.ispc = false;
+      }
     },
   },
 });

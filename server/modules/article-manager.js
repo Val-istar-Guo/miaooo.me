@@ -13,7 +13,7 @@ async function fetchIndex() {
 async function fetchArticle(name) {
   console.log('FETCH ARTICLE');
   // https://raw.githubusercontent.com/Val-istar-Guo/article/:sha/articles/:article-name
-  const ARTICLE_URL = `https://raw.githubusercontent.com/Val-istar-Guo/article/master/articles/${encodeURI(name)}`;
+  const ARTICLE_URL = `https://raw.githubusercontent.com/Val-istar-Guo/article/master/articles/${encodeURI(name)}.md`;
 
   const response = await request
     .get(ARTICLE_URL);
@@ -27,6 +27,16 @@ async function fetchSHA() {
     .get(GIT_MASTER_INFO_URL );
 
   return response.body.sha;
+}
+
+async function fetchArticleLastCommitTime(name) {
+  const ARTICLE_COMMIT_INFO_URL = `https://api.github.com/repos/Val-istar-Guo/article/commits?path=articles/${encodeURI(name)}.md`;
+
+  const response = await request
+    .get(ARTICLE_COMMIT_INFO_URL)
+    .then(res => res.body);
+
+  return response[0].commit.committer.date;
 }
 
 
@@ -104,11 +114,20 @@ export async function getArticle(name) {
 export async function getIndex() {
   const cacheKey = 'index';
 
+  // Try to get cache
   if (STORAGE.has(cacheKey)) return STORAGE.get(cacheKey);
 
-  let index = await fetchIndex();
-  index = parseIndex(index);
 
+  let index = await fetchIndex();
+  index = parseIndex(index)
+    .map((article) => {
+      return fetchArticleLastCommitTime(article.name)
+        .then(time => ({...article, time}))
+    });
+
+  index = await Promise.all(index);
+
+  // Set cache
   STORAGE.set(cacheKey, index);
 
   return index;

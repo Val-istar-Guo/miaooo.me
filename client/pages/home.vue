@@ -1,27 +1,15 @@
 <template lang="html">
   <div class='page'>
-    <header>Val-istar.Guo</header>
-    <div>
 
-      <loading v-if="!index.isload">loading index</loading>
-
-      <div v-if='index.isload && index.error' class='error'>
-        <h6 class='error-title'>{{index.error.message.title}}</h6>
-        <ol>
-          <li v-for='reason of index.error.message.reasons' class='error-reason'>{{reason}}</li>
-        </ol>
-      </div>
-
-      <ul class='index' v-if="index.isload && !index.error">
-        <li v-for="article of index.data">
-          <router-link class="link" :to="`/article/${article.name}`">
-            <h2 class='index-title'>{{article.name}}</h2>
-            <p class='index-des'>{{article.des}}</p>
-          </router-link>
-        </li>
-      </ul>
-
+    <div class='right-bar'>
+      <h2 class='article-nav-header'>Val-istar-Guo</h2>
+      <article-nav></article-nav>
     </div>
+
+    <aside v-if="ispc">
+      <blog :name="lastArticleName"></blog>
+    </aside>
+
   </div>
 </template>
 
@@ -34,7 +22,20 @@ export default {
   computed: {
     ...mapState({
       index: state => state.articles.index,
+      ispc: 'ispc',
     }),
+
+    lastArticleName: function () {
+      if (this.index.isload) {
+        const indexData = this.index.data;
+
+        if (this.index.isload && indexData.length) {
+          return indexData[indexData.length - 1].name;
+        }
+
+        return undefined;
+      }
+    },
   },
 
   mounted () {
@@ -46,9 +47,9 @@ export default {
 <style lang="scss", scoped>
 .page {
   padding: 0 48px;
-  overflow: hidden;
 }
-header {
+
+.article-nav-header {
   color: #000000;
   font-size: 16px;
   font-weight: bolder;
@@ -56,60 +57,52 @@ header {
   margin-top: 60px;
 }
 
-.loading {
-  margin-top: 32vh;
-}
-
-.error {
-  height: 100%;
-
-  margin-top: 120px;
-}
-
-.error-title {
+.article-nav-header {
   font-size: 16px;
   font-weight: bolder;
-  text-align: center;
-
-  color: #7F7F7F;
-  margin: 6px;
 }
 
-.error-reason {
-  font-size: 14px;
-  color: #7F7F7F;
-
-  line-height: 1.25;
-  margin: 5px 0;
-  padding-left: 3px;
-}
-
-.index {
-  list-style: none;
-  margin: 25px 0 0 0;
-  padding: 0;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.06);
-
-  li {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+.pc {
+  .article-nav-header {
+    padding-bottom: 12px;
+    border-bottom: 4px solid #404040;
   }
-}
+  .page {
+    margin-left: 6%;
+    margin-right: 6%;
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+  .blog {
+    margin-right: 270px;
+    padding: 10px 40px;
 
-.link{
-  display: block;
-  text-decoration: none;
-  color: #404040;
-  padding: 6px 0;
-}
+    background: white;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  }
 
-.index-title {
-  color: #404040;
-  font-size: 16px;
-  font-weight: bold;
-}
+  .article-nav {
+    padding: 0 4px;
+  }
 
-.index-des {
-  color: #7F7F7F;
-  font-size: 14px;
+  .right-bar {
+    float: right;
+    width: 240px;
+
+    padding: 0 4px;
+  }
+
+  .article-nav-header {
+    color: #404040;
+    font-size: 16px;
+    font-weight: bolder;
+
+    margin-top: 12px;
+    padding-bottom: 12px;
+    border-bottom: 4px solid #404040;
+  }
+
+
 }
 </style>
+
