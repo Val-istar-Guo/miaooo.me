@@ -1,13 +1,13 @@
 // PM2 Config
 const path = require('path');
-const { name: APP_NAME } = require('./package.json');
+const { name: APP_NAME, repository: REPO } = require('./package.json');
 
 module.exports = {
   apps: [
     {
       name: 'dev-app',
-      script: './bin/server.dev.js',
-      watch: ['server', 'webpack', 'bin'],
+      script: './build/server.dev.js',
+      watch: ['server', 'build', 'framework'],
       source_map_support: true,
 
       env: {
@@ -15,26 +15,26 @@ module.exports = {
       },
     },
     {
-      name: `${APP_NAME}-staging`,
-      script: './bin/server.dev.js',
+      name: `${APP_NAME}-stage`,
+      script: './dist/server/bundle.js',
       source_map_support: true,
 
       env: {
-        NODE_ENV: 'staging',
+        NODE_ENV: 'stage',
       },
-      env_staging: {
-        PORT: 7002,
+      env_stage: {
+        PORT: 7001,
       },
     },
     {
-      name: APP_NAME,
+      name: `${APP_NAME}-prod`,
       script: './dist/server/bundle.js',
 
       env: {
-        NODE_ENV: 'production',
+        NODE_ENV: 'prod',
       },
-      env_production: {
-        PORT: 80,
+      env_prod: {
+        PORT: 9001,
       },
     },
   ],
@@ -44,25 +44,25 @@ module.exports = {
       user: 'docker',
       host: 'docker',
       ref: 'origin/master',
-      repo: 'https://github.com/Val-istar-Guo/blog.git',
-      path: path.join('/home/docker', APP_NAME, 'production'),
-      'post-deploy': `yarn; npm run build:prod; pm2 startOrRestart ecosystem.config.js --only ${APP_NAME} --env production`,
+      repo: REPO,
+      path: path.join('/home/docker', APP_NAME, 'prod'),
+      'post-deploy': `yarn; npm run build:prod; pm2 startOrRestart ecosystem.config.js --only ${APP_NAME}-prod --env prod`,
 
       env: {
-        NODE_ENV: 'production',
+        NODE_ENV: 'prod',
       },
     },
-    staging: {
+    stage: {
       user: 'docker',
       host: 'docker',
       ref: 'origin/dev',
-      repo: 'https://github.com/Val-istar-Guo/blog.git',
-      path: path.join('/home/docker', APP_NAME, 'staging'),
-      'post-deploy': `yarn; pm2 startOrRestart ecosystem.config.js --only ${APP_NAME}-staging --env staging`,
+      repo: REPO,
+      path: path.join('/home/docker', APP_NAME, 'stage'),
+      'post-deploy': `yarn; npm run build:prod; pm2 startOrRestart ecosystem.config.js --only ${APP_NAME}-stage --env stage`,
     },
 
     env: {
-      NODE_ENV: 'staging',
+      NODE_ENV: 'stage',
     },
   },
 };
