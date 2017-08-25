@@ -1,7 +1,7 @@
 import Router from 'koa-router';
 import request from 'superagent';
 import ajaxParamsParse from 'koa-ajax-params';
-import { NO_ERROR } from 'contants/error-code';
+import { NO_ERROR } from 'framework/contants/error-code';
 
 import { getArticle, getIndex } from '../../modules/article-manager';
 
@@ -35,4 +35,3 @@ router
   });
 
 export default router;
-

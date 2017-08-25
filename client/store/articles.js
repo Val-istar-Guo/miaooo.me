@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import request from 'superagent';
-import CodeError from 'utils/code-error';
-import  { NO_ERROR }from 'contants/error-code';
-import  * as ERROR from 'contants/error-code';
+import CodeError from 'framework/utils/code-error';
+import  { NO_ERROR }from 'framework/contants/error-code';
+import  * as ERROR from 'framework/contants/error-code';
 
 import * as MUTATIONS from '../contants/mutations';
 import { generateArticleRequestUrl, INDEX_REQUEST_URL } from '../contants/request-url';
@@ -122,4 +122,3 @@ export default {
     },
   },
 };
-
