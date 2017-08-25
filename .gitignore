@@ -3,7 +3,6 @@
 
 # Editor
 .vscode
-*.swp
 
 # NodeJS
 node_modules
@@ -15,3 +14,6 @@ yarn-error.log
 # Compile
 dist
 views/index.*.html
+
+# Vim
+*.swp

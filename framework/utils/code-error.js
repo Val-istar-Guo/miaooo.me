@@ -1,5 +1,5 @@
-import errorMessage from 'contants/error-message';
-import * as ERROR from 'contants/error-code';
+import errorMessage from '../contants/error-message';
+import * as ERROR from '../contants/error-code';
 
 
 export default function CodeError(code, message = errorMessage[code]) {
@@ -10,4 +10,3 @@ export default function CodeError(code, message = errorMessage[code]) {
 }
 
 CodeError.prototype.name = 'CodeError';
-
