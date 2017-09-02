@@ -85,7 +85,8 @@ export default {
               presets: [['es2015', { modules: false }]],
               plugins: [
                 ['transform-runtime', { polyfill: false, helpers: false }],
-                ['transform-object-rest-spread'],
+                'transform-object-rest-spread',
+                'transform-async-to-generator',
               ],
             },
           },
