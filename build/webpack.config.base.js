@@ -7,20 +7,21 @@ import env from 'detect-env';
 import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
-import config from './webpack.config.expand';
+
+import config from './config';
 
 
 // NOTE remove DeprecationWarning
 process.noDeprecation = true;
 
-// NOTE const extractSCSS = new ExtractTextPlugin('styles/[name]-style.css');
-const extractCSS = new ExtractTextPlugin('styles/lib.css');
+const extractSCSS = new ExtractTextPlugin('styles/[name]-sass.css');
+const extractCSS = new ExtractTextPlugin('styles/[name]-css.css');
 
 
 // base client config
 export default {
   context: path.resolve(__dirname, '..'),
-  devtool: env.isProd ? 'nosources-source-map' : 'inline-source-map',
+  devtool: env.isProd ? false : '#cheap-module-source-map',
 
   output: {
     path: path.resolve(__dirname, '../dist/client'),
@@ -33,8 +34,6 @@ export default {
     rules: [
       {
         test: /\.css$/,
-        // include: /node_modules/,
-        // use: ['vue-style-loader', 'css-loader'],
         use: extractCSS.extract({
           fallback: 'vue-style-loader',
           use: 'css-loader',
@@ -47,9 +46,20 @@ export default {
           {
             loader: 'vue-loader',
             options: {
-              // extractCSS: true,
               loaders: {
                 scss: ['vue-style-loader', 'css-loader', 'sass-loader'],
+                js: [{
+                  loader: 'babel-loader',
+                  options: {
+                    presets: [['env', {
+                      useBuiltIns: true,
+                      modules: false,
+                      targets: {
+                        browser: ['>5%'],
+                      },
+                    }]],
+                  },
+                }],
               },
             },
           },
@@ -57,23 +67,10 @@ export default {
       },
       {
         test: /\.scss$/,
-        exclude: /node_modules/,
-        use: ['vue-style-loader', 'css-loader', 'sass-loader'],
-        // use: extractSCSS.extract({
-        //   fallback: 'vue-style-loader',
-        //   use: [
-        //     {
-        //       loader: 'css-loader',
-        //       // options: {
-        //       //   modules: true,
-        //       //   localIdentName: '[name]__[local]-[hash:base64:5]',
-        //       // },
-        //     },
-        //     {
-        //       loader: 'sass-loader',
-        //     },
-        //   ],
-        // }),
+        use: extractSCSS.extract({
+          fallback: 'vue-style-loader',
+          use: ['css-loader', 'sass-loader'],
+        }),
       },
       {
         test: /\.js$/,
@@ -82,12 +79,13 @@ export default {
           {
             loader: 'babel-loader',
             options: {
-              presets: [['es2015', { modules: false }]],
-              plugins: [
-                ['transform-runtime', { polyfill: false, helpers: false }],
-                'transform-object-rest-spread',
-                'transform-async-to-generator',
-              ],
+              presets: [['env', {
+                useBuiltIns: true,
+                modules: false,
+                targets: {
+                  browser: ['>5%'],
+                },
+              }]],
             },
           },
         ],
@@ -118,6 +116,7 @@ export default {
 
   plugins: [
     extractCSS,
+    extractSCSS,
 
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),

@@ -1,9 +1,12 @@
 import path from 'path';
+import webpack from 'webpack';
 import merge from 'webpack-merge';
+
+import nodeExternals from 'webpack-node-externals';
 import { VueSSRServerPlugin } from 'vue-ssr-webpack-plugin';
-import { dependencies } from '../package.json';
+
 import base from './webpack.config.base';
-import config from './webpack.config.expand';
+import config from './config';
 
 
 function emptyPackage(list) {
@@ -13,17 +16,13 @@ function emptyPackage(list) {
   }), {});
 }
 
-function getExternals() {
-  return Object.keys(dependencies).filter(key => (
-    !config.nonJsModule.includes(key)
-  ));
-}
-
 export default merge(base, {
-  entry: './client/entry-ssr',
+  entry: ['babel-polyfill', './client/entry-ssr'],
   target: 'node',
 
-  externals: getExternals(),
+  externals: nodeExternals({
+    whitelist: /\.css$/
+  }),
 
   output: {
     libraryTarget: 'commonjs2',
@@ -36,9 +35,12 @@ export default merge(base, {
   },
 
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env.VUE_ENV': JSON.stringify('server'),
+    }),
+
     new VueSSRServerPlugin({
-      filename: config.ssrFileName,
+      filename: config.ssrFilename,
     }),
   ],
 });
-

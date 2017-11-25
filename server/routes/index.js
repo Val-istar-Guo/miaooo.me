@@ -1,10 +1,13 @@
 import Router from 'koa-router';
-import apiRouter from './api';
+import faviconRouter from './favicon';
+// import childRouter from './child';
 
 
 const router = new Router();
 
 router
-  .use(apiRouter.routes());
+  .use(faviconRouter.routes());
+  // .use(childRouter.routes());
 
 export default router;
+

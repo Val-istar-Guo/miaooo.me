@@ -1,42 +1,44 @@
-import detectEnv from 'detect-env';
+import env from 'detect-env';
 
-import articles from './articles';
 import * as MUTATIONS from '../contants/mutations';
+import { FETCH_STATUS } from '../contants/status';
 
+
+const fetch = () => new Promise(resolve => setTimeout(resolve, 4000)) ;
 
 export default {
-  strict: detectEnv({ production: false, default: true }),
+  strict: env.isProd ? false : true,
 
   modules: {
-    articles,
   },
 
   state: {
-    ispc: (typeof window !== 'undefined' && document.documentElement.clientWidth > 1024) ? true : false,
-    time: { server: new Date().getTime(), client: new Date().getTime() },
+    isload: false,
+    value: '',
   },
 
-  getters: {
-    serverTime: ({ time }) => {
-      const now = new Date().getTime();
+  actions: {
+    fetchValue: async ({ state, commit }, payload) => {
+      // needless dispatch
+      // if (state.value === payload) return;
 
-      return new Date(now - time.client + time.server);
+      console.log('fetching value', payload);
+      commit(MUTATIONS.UPDATE_FETCH_STATE, FETCH_STATUS.FETCHING);
+      await fetch();
+      console.log('fetched value', payload);
+      commit(MUTATIONS.UPDATE_FETCH_STATE, FETCH_STATUS.FETCHED);
+      commit(MUTATIONS.UPDATE_VALUE, payload);
     }
   },
 
   mutations: {
-    [MUTATIONS.UPDATE_SERVER_TIME](state, payload) {
-      state.time = {
-        server: payload.serverTime,
-        client: new Date().getTime(),
-      };
+    [MUTATIONS.UPDATE_VALUE](state, payload) {
+      state.value = payload;
     },
-    [MUTATIONS.RECALCULATE_DIVICE_SIZE](state, payload) {
-      if (typeof window !== 'undefined' && payload.width > 1024) {
-        state.ispc = true;
-      } else {
-        state.ispc = false;
-      }
+    [MUTATIONS.UPDATE_FETCH_STATE](state, payload) {
+      state.isload = payload === FETCH_STATUS.FETCHED;
     },
   },
+
 };
+

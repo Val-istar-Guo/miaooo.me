@@ -1,10 +1,7 @@
 import Vue from 'vue';
 
-import Loading from './loading';
-import ArticleNav from './article-nav';
-import Blog from './blog';
 
+// import exampleComponent from './components/example-component';
 
-Vue.component('loading', Loading);
-Vue.component('article-nav', ArticleNav);
-Vue.component('blog', Blog);
+// Vue.component('example-component', exampleComponent);
+

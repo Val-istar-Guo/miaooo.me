@@ -1,8 +1,19 @@
-import Home from '../pages/home';
-import Article from '../pages/article';
+import Example from '../views/example';
+import Introduce from '../views/introduce';
+import Test from '../views/test';
 
 
 export default [
-  { path: '/', component: Home, alias: ['/home'] },
-  { path: '/article/:name', component: Article }
+  { path: '/', component: Example, alias: ['/home'], children: [
+    {
+      path: '',
+      alias: ['introduce'],
+      component: Introduce,
+    },
+    {
+      path: 'test',
+      component: Test,
+    },
+  ]},
 ];
+

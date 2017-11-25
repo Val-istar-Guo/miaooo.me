@@ -7,7 +7,7 @@ module.exports = {
     {
       name: 'dev-app',
       script: './build/server.dev.js',
-      watch: ['server', 'build', 'framework'],
+      watch: ['./server', './build', './framework'],
       source_map_support: true,
 
       env: {
@@ -23,7 +23,7 @@ module.exports = {
         NODE_ENV: 'stage',
       },
       env_stage: {
-        PORT: 7002,
+        PORT: 7001,
       },
     },
     {
@@ -34,7 +34,7 @@ module.exports = {
         NODE_ENV: 'prod',
       },
       env_prod: {
-        PORT: 80,
+        PORT: 9001,
       },
     },
   ],

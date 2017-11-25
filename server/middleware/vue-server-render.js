@@ -1,21 +1,26 @@
 import fs from 'fs';
-import path from 'path';
+import env from 'detect-env';
 import { createBundleRenderer } from 'vue-server-renderer';
 
 
+const title = 'Vue-Koa Boilerplate';
 function renderToString(renderer, url) {
 
   return new Promise((resolve, reject) => {
-    renderer.renderToString({ url }, (err, html) => {
-      if (err) reject(err);
-      resolve(html ? html : '');
+    renderer.renderToString({ url, title }, (err, html) => {
+      if (err) {
+        err.status = err.code;
+        err.expose = !env.isProd;
+        reject(err);
+        return;
+      }
+
+      resolve(html);
     });
   });
 }
 
-export default function ({ bundle, manifest: clientManifest }) {
-  const template = fs.readFileSync('./client/index.html', 'utf8');
-
+export default function ({ bundle, template, manifest: clientManifest }) {
   const renderer = createBundleRenderer(bundle, {
     runInNewContext: false,
     template,
@@ -23,8 +28,18 @@ export default function ({ bundle, manifest: clientManifest }) {
   });
 
   return async (ctx, next) => {
-    const html = await renderToString(renderer, ctx.url);
-    ctx.body = html;
+    let html = false;
+
+    try {
+      html = await renderToString(renderer, ctx.url);
+    } catch (err) {
+      if (err.status !== 404) {
+        console.log('[Vue Server Side Render] ', err.stack);
+        throw err;
+      }
+    }
+
+    if (html) ctx.body = html;
+    else await next();
   };
 }
-
