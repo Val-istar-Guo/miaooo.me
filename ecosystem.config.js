@@ -4,7 +4,7 @@ const path = require('path');
 
 const { name: APP_NAME, repository: REPO } = require('./package.json');
 const serverPath = path.join('/var/www', APP_NAME);
-const user = 'www';
+const user = 'jumper';
 const host = 'miaooo.me';
 
 module.exports = {
