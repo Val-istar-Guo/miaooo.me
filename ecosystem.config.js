@@ -18,7 +18,7 @@ module.exports = {
         NODE_ENV: 'stage',
       },
       env_stage: {
-        PORT: 7001,
+        PORT: 5001,
       },
     },
     {
@@ -29,7 +29,7 @@ module.exports = {
         NODE_ENV: 'prod',
       },
       env_prod: {
-        PORT: 9001,
+        PORT: 6001,
       },
     },
   ],
