@@ -1,44 +1,60 @@
 import env from 'detect-env';
+import request from 'superagent';
 
+import * as logger from '../utils/logger';
 import * as MUTATIONS from '../contants/mutations';
-import { FETCH_STATUS } from '../contants/status';
+import { FETCHING, FETCHED, FETCH_FAIL } from '../contants/fetchStatus';
 
-
-const fetch = () => new Promise(resolve => setTimeout(resolve, 4000)) ;
 
 export default {
-  strict: env.isProd ? false : true,
-
-  modules: {
-  },
+  strict: env.is.prod ? false : true,
 
   state: {
-    isload: false,
-    value: '',
-  },
-
-  actions: {
-    fetchValue: async ({ state, commit }, payload) => {
-      // needless dispatch
-      // if (state.value === payload) return;
-
-      console.log('fetching value', payload);
-      commit(MUTATIONS.UPDATE_FETCH_STATE, FETCH_STATUS.FETCHING);
-      await fetch();
-      console.log('fetched value', payload);
-      commit(MUTATIONS.UPDATE_FETCH_STATE, FETCH_STATUS.FETCHED);
-      commit(MUTATIONS.UPDATE_VALUE, payload);
-    }
+    loadStatus: FETCHING,
+    loadError: {
+      code: null,
+      message: '',
+    },
+    articles: [],
   },
 
   mutations: {
-    [MUTATIONS.UPDATE_VALUE](state, payload) {
-      state.value = payload;
+    [MUTATIONS.ARTICLE_FETCHING](state) {
+      state.loadStatus = FETCHING;
     },
-    [MUTATIONS.UPDATE_FETCH_STATE](state, payload) {
-      state.isload = payload === FETCH_STATUS.FETCHED;
+    [MUTATIONS.ARTICLE_FETCHED](state, article) {
+      state.loadStatus = FETCHED;
+      console.log(article);
+      state.articles = [...state.articles, article];
+    },
+    [MUTATIONS.ARTICLE_FETCH_FAIL](state, error) {
+      state.loadStatus = FETCH_FAIL;
+      state.loadError = error;
     },
   },
 
+  actions: {
+    loadArticle: async ({ state, commit }, title) => {
+      commit(MUTATIONS.ARTICLE_FETCHING);
+
+      try {
+        console.log(encodeURI(`http://api.miaooo.me/v1/articles/${title}`));
+        const article = await request
+          .get(encodeURI(`http://api.miaooo.me/v1/articles/${title}`))
+          .then(resp => resp.body)
+
+        commit(MUTATIONS.ARTICLE_FETCHED, { title, ...article });
+      } catch (err) {
+        // logger.error(err);
+        if (env.is.prod) {
+          commit(MUTATIONS.ARTICLE_FETCH_FAIL, {
+            message: '网络未连接或服务器异常，请稍后再试',
+          });
+        } else {
+          commit(MUTATIONS.ARTICLE_FETCH_FAIL, { message: err.message });
+        }
+      }
+    }
+  },
 };
 
