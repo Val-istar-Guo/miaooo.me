@@ -13,7 +13,7 @@
     "build:prod": "NODE_ENV=production npm run build",
     "start": "node build/server.dev.js",
     "start:prod": "NODE_ENV=production npm run build;NODE_ENV=production node dist/server/bundle.js",
-    "setup": "pm2 deploy ecosystem.config.js stage setup",
+    "setup": "npm run setup:stage",
     "setup:stage": "pm2 deploy ecosystem.config.js stage setup",
     "setup:prod": "pm2 deploy ecosystem.config.js prod setup",
     "deploy": "npm run deploy:stage",
