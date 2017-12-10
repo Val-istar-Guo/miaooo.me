@@ -24,7 +24,6 @@ export default {
     },
     [MUTATIONS.ARTICLE_FETCHED](state, article) {
       state.loadStatus = FETCHED;
-      console.log(article);
       state.articles = [...state.articles, article];
     },
     [MUTATIONS.ARTICLE_FETCH_FAIL](state, error) {
@@ -38,7 +37,6 @@ export default {
       commit(MUTATIONS.ARTICLE_FETCHING);
 
       try {
-        console.log(encodeURI(`http://api.miaooo.me/v1/articles/${title}`));
         const article = await request
           .get(encodeURI(`http://api.miaooo.me/v1/articles/${title}`))
           .then(resp => resp.body)

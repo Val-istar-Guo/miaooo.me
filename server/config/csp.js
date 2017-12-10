@@ -1,9 +1,12 @@
 import env from 'detect-env';
 
+
 export default env.detect({
   prod: {
-    'default-src': ['self', '*.miaooo.me'],
-    'img-src': ['*'],
+    policy: {
+      'default-src': ['self', '*.miaooo.me'],
+      'img-src': ['*'],
+    },
   },
 
   default: {
