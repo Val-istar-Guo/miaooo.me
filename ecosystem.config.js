@@ -14,22 +14,18 @@ module.exports = {
       script: './dist/server/bundle.js',
       source_map_support: true,
 
-      env: {
-        NODE_ENV: 'stage',
-      },
       env_stage: {
         PORT: 5001,
+        HOST: '127.0.0.1',
       },
     },
     {
       name: `${APP_NAME}-prod`,
       script: './dist/server/bundle.js',
 
-      env: {
-        NODE_ENV: 'prod',
-      },
       env_prod: {
         PORT: 6001,
+        HOST: '127.0.0.1',
       },
     },
   ],
