@@ -1,9 +1,9 @@
 {
-  "name": "vue-boilerplate",
+  "name": "miaooo.me",
   "version": "3.0.0",
-  "description": "vue isomorphic boilerplate",
+  "description": "Val-istart-Guo Blog",
   "main": "index.js",
-  "repository": "https://github.com/Val-istar-Guo/vue-boilerplate.git",
+  "repository": "git@github.com:Val-istar-Guo/miaooo.me.git",
   "author": "Val.istar.Guo <Val.istar.Guo@gmail.com>",
   "license": "MIT",
   "scripts": {
