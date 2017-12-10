@@ -1,19 +1,14 @@
-import Example from '../views/example';
-import Introduce from '../views/introduce';
-import Test from '../views/test';
+import Article from '../views/article';
+import SelfInforduction from '../views/self-introduction';
 
 
 export default [
-  { path: '/', component: Example, alias: ['/home'], children: [
-    {
-      path: '',
-      alias: ['introduce'],
-      component: Introduce,
-    },
-    {
-      path: 'test',
-      component: Test,
-    },
-  ]},
+  {
+    path: '/',
+    component: SelfInforduction,
+  },
+  {
+    path: '/article/:title',
+    component: Article,
+  },
 ];
-
