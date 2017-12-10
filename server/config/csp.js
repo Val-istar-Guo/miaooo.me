@@ -4,7 +4,7 @@ import env from 'detect-env';
 export default env.detect({
   prod: {
     policy: {
-      'default-src': ['self', '*.miaooo.me'],
+      'default-src': ['self', '*.miaooo.me', 'unsafe-inline'],
       'img-src': ['*'],
     },
   },
