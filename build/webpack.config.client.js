@@ -32,7 +32,7 @@ const plugins = [
   }]),
 ];
 
-if (env.isProd) plugins.push(new webpack.optimize.UglifyJsPlugin());
+if (env.is.prod) plugins.push(new webpack.optimize.UglifyJsPlugin());
 
 
 export default merge(base, {
