@@ -8,8 +8,12 @@
   </div>
 </template>
 <script>
-export default {
+import titleMixin from 'framework/utils/titleMixin';
 
+
+export default {
+  mixins: [titleMixin],
+  title: 'Val-istar-Guo Introduction',
 }
 </script>
 <style lang="scss" scoped>

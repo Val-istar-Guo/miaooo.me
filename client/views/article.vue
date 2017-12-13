@@ -14,6 +14,7 @@
   </div>
 </template>
 <script>
+import titleMixin from 'framework/utils/titleMixin';
 import { mapState, mapGetters } from 'vuex';
 import * as FETCH_STATUS from '../contants/fetchStatus';
 
@@ -23,6 +24,12 @@ export default {
     const { title } = route.params;
     console.log(route.params);
     await store.dispatch('loadArticle', title);
+  },
+
+  mixins: [titleMixin],
+  title: function () {
+    console.log('mixin title');
+    return this.$route.params.title;
   },
 
   data: () => ({
