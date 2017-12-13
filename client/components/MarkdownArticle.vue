@@ -1,15 +1,21 @@
 <template>
-  <article class="markdown-article">
-    <vue-markdown><slot></slot></vue-markdown>
-  </article>
+  <article class="markdown-article" v-html="content"></article>
 </template>
 <script>
-import VueMarkdown from 'vue-markdown';
+import markdown from 'markdown-it';
 
+
+const md = markdown();
 
 export default {
-  components: {
-    'vue-markdown': VueMarkdown,
+  computed: {
+    content: function () {
+      const source = this.$slots.default
+        .map(slot => slot.text)
+        .join('');
+
+      return md.render(source);
+    },
   },
 }
 </script>
