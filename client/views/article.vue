@@ -49,22 +49,54 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@media (max-width: 1023px) {
+  .article-page {
+    width: 80vw;
+  }
+
+  header {
+    padding-top: 30%;
+
+    img {
+      width: 128rem;
+      height: 128rem;
+    }
+
+    h1 {
+      font-size: 36rem;
+      margin-top: 60rem;
+      margin-bottom: 40rem;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .article-page {
+    width: 960px;
+  }
+
+  header {
+    padding-top: 160px;
+
+    img {
+      width: 128px;
+      height: 128px;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-top: 60px;
+      margin-bottom: 40px;
+    }
+  }
+}
+
 .article-page {
-  width: 960px;
   margin: 0 auto;
 }
+
 header {
   text-align: center;
-  padding-top: 160px;
-
-  img {
-    width: 128px;
-    height: 128px;
-  }
-
-  h1 {
-    margin-top: 60px;
-    margin-bottom: 40px;
-  }
 }
+
 </style>
