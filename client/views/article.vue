@@ -22,13 +22,11 @@ import * as FETCH_STATUS from '../contants/fetchStatus';
 export default {
   initialData: async function ({ store, route }) {
     const { title } = route.params;
-    console.log(route.params);
     await store.dispatch('loadArticle', title);
   },
 
   mixins: [titleMixin],
   title: function () {
-    console.log('mixin title');
     return this.$route.params.title;
   },
 
@@ -38,11 +36,11 @@ export default {
 
   computed: {
     ...mapState({
-      loadStatus: 'loadStatus',
-      loadError: 'loadError',
-      article: function ({ articles }) {
+      loadStatus: state => state.articles.loadStatus,
+      loadError: state => state.articles.loadError,
+      article: function (state) {
         const { title } = this.$route.params;
-        return articles.find(article => article.title === title);
+        return state.articles.items.find(article => article.title === title);
       },
     }),
   },
