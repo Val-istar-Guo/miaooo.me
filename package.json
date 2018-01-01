@@ -61,6 +61,8 @@
     "koa-static": "^4.0.1",
     "lodash": "^4.17.4",
     "markdown-it": "^8.4.0",
+    "md-core": "0.0.2-alpha.3",
+    "md-plugins-vig": "0.0.1-alpha.5",
     "normalize.css": "^7.0.0",
     "superagent": "^3.6.0",
     "vue": "^2.4.2",

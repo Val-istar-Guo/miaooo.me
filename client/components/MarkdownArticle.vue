@@ -2,10 +2,11 @@
   <article class="markdown-article" v-html="content"></article>
 </template>
 <script>
-import markdown from 'markdown-it';
+// import markdown from 'markdown-it';
+import md from '../utils/md';
 
-
-const md = markdown();
+console.log(md);
+// const md = markdown();
 
 export default {
   computed: {
@@ -14,8 +15,25 @@ export default {
         .map(slot => slot.text)
         .join('');
 
-      return md.render(source);
+      console.log('---------------------------------');
+      const a = md.parse(source);
+      if (a && a.toHtml) {
+        console.log('have toHtml: ', a);
+        // console.log(a.toHtml());
+      } else {
+        console.log('not have toHtml: ', a);
+      }
+      // console.log('aaaaaaaaaaaaaaaa: ', md.parse(source));
+      return md.parse(source).toHtml();
+      // return md.parse('## a', { isDebug: true }).toHtml();
+      // return '';
+
+      // return md.render(source);
     },
+  },
+
+  mounted: function () {
+    // console.log(md.parse('# a', { isDebug: true }).toHtml());
   },
 }
 </script>
