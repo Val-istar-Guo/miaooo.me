@@ -25,4 +25,3 @@ const clientTitleMixin = {
 export default process.env.VUE_ENV === 'server'
   ? ssrTitleMixin
   : clientTitleMixin;
-

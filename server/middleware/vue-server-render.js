@@ -3,7 +3,7 @@ import env from 'detect-env';
 import { createBundleRenderer } from 'vue-server-renderer';
 
 
-const title = 'Vue-Koa Boilerplate';
+const title = 'Val-istar-Guo';
 function renderToString(renderer, url) {
 
   return new Promise((resolve, reject) => {

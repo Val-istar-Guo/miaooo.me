@@ -2,7 +2,7 @@
   <div class="absolute-center">
     <div>
       <h1 class='error-title'>页面无法载入</h1>
-      <p class='text error-info'><slot></slot></p>
+      <p class='text error-info'><pre><slot></slot></pre></p>
     </div>
   </div>
 </template>
@@ -23,6 +23,10 @@ export default {
     left: 50%;
     transform: translate(-50%, -50%);
   }
+}
+
+p {
+  line-height: 1.8;
 }
 
 </style>

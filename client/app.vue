@@ -12,5 +12,11 @@ export default {
 
 <style lang="scss">
 @import './styles/index.scss';
+
+@media (max-width: 1023px) {
+  html {
+    font-size: (24 / 36) + px;
+  }
+}
 </style>
 

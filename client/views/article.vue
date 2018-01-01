@@ -14,6 +14,7 @@
   </div>
 </template>
 <script>
+import titleMixin from 'framework/utils/titleMixin';
 import { mapState, mapGetters } from 'vuex';
 import * as FETCH_STATUS from '../contants/fetchStatus';
 
@@ -21,8 +22,12 @@ import * as FETCH_STATUS from '../contants/fetchStatus';
 export default {
   initialData: async function ({ store, route }) {
     const { title } = route.params;
-    console.log(route.params);
     await store.dispatch('loadArticle', title);
+  },
+
+  mixins: [titleMixin],
+  title: function () {
+    return this.$route.params.title;
   },
 
   data: () => ({
@@ -31,33 +36,65 @@ export default {
 
   computed: {
     ...mapState({
-      loadStatus: 'loadStatus',
-      loadError: 'loadError',
-      article: function ({ articles }) {
+      loadStatus: state => state.articles.loadStatus,
+      loadError: state => state.articles.loadError,
+      article: function (state) {
         const { title } = this.$route.params;
-        return articles.find(article => article.title === title);
+        return state.articles.items.find(article => article.title === title);
       },
     }),
   },
 }
 </script>
 <style lang="scss" scoped>
+@media (max-width: 1023px) {
+  .article-page {
+    width: 80vw;
+  }
+
+  header {
+    padding-top: 30%;
+
+    img {
+      width: 128rem;
+      height: 128rem;
+    }
+
+    h1 {
+      font-size: 36rem;
+      margin-top: 60rem;
+      margin-bottom: 40rem;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .article-page {
+    width: 960px;
+  }
+
+  header {
+    padding-top: 160px;
+
+    img {
+      width: 128px;
+      height: 128px;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-top: 60px;
+      margin-bottom: 40px;
+    }
+  }
+}
+
 .article-page {
-  width: 960px;
   margin: 0 auto;
 }
+
 header {
   text-align: center;
-  padding-top: 160px;
-
-  img {
-    width: 128px;
-    height: 128px;
-  }
-
-  h1 {
-    margin-top: 60px;
-    margin-bottom: 40px;
-  }
 }
+
 </style>
