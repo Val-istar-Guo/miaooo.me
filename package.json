@@ -1,6 +1,6 @@
 {
   "name": "miaooo.me",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "description": "Val-istart-Guo Blog",
   "main": "index.js",
   "repository": "https://github.com/Val-istar-Guo/miaooo.me.git",
@@ -62,7 +62,7 @@
     "lodash": "^4.17.4",
     "markdown-it": "^8.4.0",
     "md-core": "0.0.2-alpha.3",
-    "md-plugins-vig": "0.0.1-alpha.5",
+    "md-plugins-vig": "0.0.1-alpha.7",
     "normalize.css": "^7.0.0",
     "superagent": "^3.6.0",
     "vue": "^2.4.2",
