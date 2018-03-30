@@ -2,11 +2,9 @@
   <article class="markdown-article" v-html="content"></article>
 </template>
 <script>
-// import markdown from 'markdown-it';
 import md from '../utils/md';
+import 'highlight.js/styles/github.css';
 
-console.log(md);
-// const md = markdown();
 
 export default {
   computed: {
@@ -15,25 +13,9 @@ export default {
         .map(slot => slot.text)
         .join('');
 
-      console.log('---------------------------------');
       const a = md.parse(source);
-      if (a && a.toHtml) {
-        console.log('have toHtml: ', a);
-        // console.log(a.toHtml());
-      } else {
-        console.log('not have toHtml: ', a);
-      }
-      // console.log('aaaaaaaaaaaaaaaa: ', md.parse(source));
-      return md.parse(source).toHtml();
-      // return md.parse('## a', { isDebug: true }).toHtml();
-      // return '';
-
-      // return md.render(source);
+      return md.parse(source).toHTML();
     },
-  },
-
-  mounted: function () {
-    // console.log(md.parse('# a', { isDebug: true }).toHtml());
   },
 }
 </script>
@@ -47,6 +29,14 @@ export default {
 
   pre {
     overflow-x: auto;
+    font-size: 16px;
+    line-height: 1.6;
+    background: #f7f7f7;
+    padding: 10px 20px;
+  }
+
+  pre * {
+    font-family: Monospace !important;
   }
 }
 
