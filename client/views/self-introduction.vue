@@ -19,8 +19,9 @@
       <section class="article-list">
         <h2>Writings</h2>
         <ul>
-          <li><router-link to="/article/Vue-Koa同构开发环境">Vue-Koa同构开发环境</router-link></li>
-          <li><router-link to="/article/git为何会忽略icon文件（夹）">git为何会忽略icon文件（夹）</router-link></li>
+          <li v-for="(name, index) in catalog" :key="index">
+            <router-link :to="`/article/${name.title}`">{{name.title}}</router-link>
+          </li>
         </ul>
       </section>
     </div>
