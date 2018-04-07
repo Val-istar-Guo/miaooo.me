@@ -27,6 +27,11 @@ export default {
     display: none;
   }
 
+  h6 {
+    text-align: center;
+    color: #333;
+  }
+
   pre {
     overflow-x: auto;
     font-size: 16px;
@@ -46,6 +51,10 @@ export default {
     font-size: $font-size;
     font-weight: 300;
     line-height: 1.7;
+
+    h6 {
+      font-size: 22rem;
+    }
 
     a {
       color: #EF4459;
@@ -68,6 +77,10 @@ export default {
     font-weight: 300;
     color: #4A4A4A;
     line-height: 32px;
+
+    h6 {
+      font-size: 16px;
+    }
 
     a {
       color: #EF4459;
