@@ -27,6 +27,7 @@ export default {
 
   mixins: [titleMixin],
   title: function () {
+    console.log(this.$route)
     return this.$route.params.title;
   },
 
