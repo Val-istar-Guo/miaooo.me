@@ -12,7 +12,7 @@ export default env.detect({
   default: {
     policy: {
       // Vue need 'unsafe-eval'
-      'default-src': ['self', 'unsafe-eval', 'unsafe-inline', '*.miaooo.me'],
+      'default-src': ['self', 'unsafe-eval', 'unsafe-inline', 'ws:', '*.miaooo.me', 'ws:'],
       'img-src': ['*'],
     },
   },

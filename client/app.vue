@@ -10,8 +10,8 @@ export default {
 }
 </script>
 
-<style lang="scss">
-@import './styles/index.scss';
+<style lang="postcss">
+@import './styles/index.css';
 
 @media (max-width: 1023px) {
   html {

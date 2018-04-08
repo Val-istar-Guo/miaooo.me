@@ -19,20 +19,20 @@ export default {
   },
 }
 </script>
-<style lang="scss">
+<style lang="postcss">
 .markdown-article {
   color: #4A4A4A;
 
-  h1 {
+  & h1 {
     display: none;
   }
 
-  h6 {
+  & h6 {
     text-align: center;
     color: #333;
   }
 
-  pre {
+  & pre {
     overflow-x: auto;
     font-size: 16px;
     line-height: 1.6;
@@ -40,7 +40,7 @@ export default {
     padding: 10px 20px;
   }
 
-  pre * {
+  & pre * {
     font-family: Monospace !important;
   }
 }
@@ -52,11 +52,11 @@ export default {
     font-weight: 300;
     line-height: 1.7;
 
-    h6 {
+    & h6 {
       font-size: 22rem;
     }
 
-    a {
+    & a {
       color: #EF4459;
       text-decoration: none;
       &:hover {
@@ -64,7 +64,7 @@ export default {
       }
     }
 
-    p {
+    & p {
       text-indent: 2 * $font-size;
       text-align: justify;
     }
@@ -78,11 +78,11 @@ export default {
     color: #4A4A4A;
     line-height: 32px;
 
-    h6 {
+    & h6 {
       font-size: 16px;
     }
 
-    a {
+    & a {
       color: #EF4459;
       text-decoration: none;
       &:hover {
@@ -90,7 +90,7 @@ export default {
       }
     }
 
-    p {
+    & p {
       text-indent: 36px;
     }
   }

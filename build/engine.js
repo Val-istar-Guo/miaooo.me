@@ -21,10 +21,19 @@ require('babel-register')({
   ],
 });
 
-const { Server, readFile } = require('./helper');
+// Compatible with MemoryFileSystem
+const readFile = (fs, file) => {
+  try {
+    return fs.readFileSync(file, 'utf-8');
+  } catch (e) {
+    console.log(chalk.red(`[Server Engine] readFileError:(${file}) ${e.message}`));
+  }
+}
+
+const Server = require('./server');
 
 // init compiler
-const { ssrFilename, manifestFilename } = require('./config');
+const { ssrFilename, manifestFilename } = require('../build.config');
 
 const PORT = process.env.PORT || 8080;
 const HOST = process.env.HOST || '0.0.0.0';
@@ -35,7 +44,7 @@ const server = new Server(PORT, HOST);
  * NOTE devConfig used to make template
  *      and make webpack dev middleware
  */
-const devConfig = require('./webpack.config.client.dev');
+const devConfig = require('./webpack.config.client');
 const devCompiler = webpack(devConfig);
 server.devCompiler = devCompiler;
 
@@ -89,7 +98,7 @@ ssrCompiler.watch({}, (err, stats) => {
   ));
 });
 
-const serverConfig = require('./webpack.config.server.dev');
+const serverConfig = require('./webpack.config.server');
 const serverCompiler = webpack(serverConfig);
 
 const serverMfs = new MemoryFileSystem();
@@ -105,7 +114,7 @@ serverCompiler.watch({}, (err, stats) => {
   if (err) throw err;
 
   const info = stats.toJson();
-  const chunkName = info.assetsByChunkName.bundle;
+  const chunkName = info.assetsByChunkName.main;
 
   info.errors.forEach(err => console.log(chalk.red.bold(err)));
   info.warnings.forEach(warn => console.log(chalk.yellow(warn)));

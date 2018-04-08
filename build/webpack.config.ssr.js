@@ -5,8 +5,8 @@ import merge from 'webpack-merge';
 import nodeExternals from 'webpack-node-externals';
 import { VueSSRServerPlugin } from 'vue-ssr-webpack-plugin';
 
-import base from './webpack.config.base';
-import config from './config';
+import common from './webpack.config.common';
+import config from '../build.config'
 
 
 function emptyPackage(list) {
@@ -16,27 +16,19 @@ function emptyPackage(list) {
   }), {});
 }
 
-export default merge(base, {
+export default merge(common, {
   entry: ['babel-polyfill', './client/entry-ssr'],
   target: 'node',
-
-  externals: nodeExternals({
-    whitelist: /\.css$/
-  }),
-
-  output: {
-    libraryTarget: 'commonjs2',
-  },
+  externals: nodeExternals({ whitelist: /\.css$/ }),
+  output: { libraryTarget: 'commonjs2' },
 
   resolve: {
-    alias: {
-      ...emptyPackage(config.nonIsomorphicModule),
-    },
+    alias: { ...emptyPackage(config.nonIsomorphicModule) },
   },
 
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.VUE_ENV': JSON.stringify('server'),
+      'process.env.CONTAINER': JSON.stringify('ssr'),
     }),
 
     new VueSSRServerPlugin({

@@ -2,28 +2,21 @@ import path from 'path';
 import webpack from 'webpack';
 import env from 'detect-env';
 import merge from 'webpack-merge';
-import config from './config';
-import base from './webpack.config.base';
 import VueSSRClientPlugin from 'vue-server-renderer/client-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+
+import config from '../build.config'
+import common from './webpack.config.common';
 
 
 const plugins = [
-  new webpack.optimize.CommonsChunkPlugin({
-    names: 'lib',
-    filename: '[name].[chunkhash:8].js',
-  }),
-
-  new webpack.optimize.CommonsChunkPlugin({
-    name: "manifest",
-  }),
-
   new VueSSRClientPlugin({
     filename: config.manifestFilename,
   }),
 
   new webpack.DefinePlugin({
-    'process.env.VUE_ENV': JSON.stringify('client'),
+    'process.env.WEB_CONTAINER': JSON.stringify('browser'),
   }),
 
   new CopyWebpackPlugin([{
@@ -32,19 +25,28 @@ const plugins = [
   }]),
 ];
 
-if (env.is.prod) plugins.push(new webpack.optimize.UglifyJsPlugin());
+if (!env.is.prod) {
+  plugins.push(
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    // new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+  )
+}
+
+if (process.env.ANALYZER) {
+  plugins.push(new BundleAnalyzerPlugin())
+}
 
 
-export default merge(base, {
+export default merge(common, {
   entry: {
     bundle: ['babel-polyfill', './client/entry-client'],
-    lib: config.lib,
   },
 
   output: {
-    path: path.resolve(__dirname, '../dist/client'),
-    filename: '[name].[chunkhash:8].js',
-    chunkFilename: 'chunk.[name].[chunkhash:8].js',
+    filename: env.is.prod ? '[name].[chunkhash:8].js' : '[name].[hash].js',
+    chunkFilename: env.is.prod ? 'chunk.[name].[chunkhash:8].js' : 'chunk.[name].[hash].js',
   },
 
   resolve: {
@@ -55,4 +57,3 @@ export default merge(base, {
 
   plugins,
 });
-

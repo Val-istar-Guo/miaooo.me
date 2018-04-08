@@ -1,5 +1,6 @@
 <template>
   <div>
+    <document-title>Val-istar-Guo</document-title>
     <div v-if="load.state === FETCHING" >Loading</div>
     <div v-else-if="load.state === FETCH_FAIL">
       <error-reminder>{{errorTip}}</error-reminder>
@@ -29,7 +30,6 @@
 </template>
 <script>
 import { mapState } from 'vuex';
-import titleMixin from 'framework/utils/titleMixin';
 import * as FETCH_STATUS from '../contants/fetchStatus';
 import combineLoadState from '../utils/combineLoadState';
 
@@ -41,8 +41,6 @@ export default {
       store.dispatch('loadCatalog'),
     ]);
   },
-  mixins: [titleMixin],
-  title: 'Val-istar-Guo Introduction',
 
   data: () => ({
     ...FETCH_STATUS,
@@ -64,24 +62,24 @@ export default {
 }
 
 </script>
-<style lang="scss" scoped>
+<style lang="postcss" scoped>
 @media (max-width: 1023px) {
   header {
     padding-top: 120rem;
     padding-bottom: 60rem;
 
-    h1 {
+    & h1 {
       font-size: 46rem;
       font-weight: 100;
       margin-bottom: 10rem;
     }
 
-    img {
+    & img {
       width: 160rem;
       height: 160rem;
     }
 
-    p {
+    & p {
       margin: 0;
       font-weight: lighter;
       font-size: 18rem;
@@ -94,18 +92,18 @@ export default {
     padding-top: 200px;
     padding-bottom: 40px;
 
-    h1 {
+    & h1 {
       font-size: 36px;
       font-weight: 100;
       margin-bottom: 10px;
     }
 
-    img {
+    & img {
       width: 128px;
       height: 128px;
     }
 
-    p {
+    & p {
       margin: 0;
       font-weight: lighter;
       font-size: 12px;
@@ -118,7 +116,7 @@ header {
   text-align: center;
   user-select: none;
 
-  h1 {
+  & h1 {
     color: #4A4A4A;
   }
 }
@@ -126,7 +124,7 @@ header {
 .article-list {
   text-align: center;
 
-  h2 {
+  & h2 {
     color: #4a4a4a;
     font-weight: bolder;
     font-size: 24px;
@@ -156,17 +154,17 @@ header {
     }
   }
 
-  a {
+  & a {
     color: #4a4a4a;
 
     font-size: 18px;
     font-weight: normal;
   }
 
-  ul {
+  & ul {
     padding: 0 0 60px 0;
     list-style: none;
-    li {
+    & li {
       margin: 20px 0;
     }
   }

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <document-title>{this.$route.params.title}</document-title>
     <div v-if="loadStatus === FETCHING" >Loading</div>
     <div v-else-if="loadStatus === FETCH_FAIL">
       <error-reminder>{{loadError.message}}</error-reminder>
@@ -14,7 +15,6 @@
   </div>
 </template>
 <script>
-import titleMixin from 'framework/utils/titleMixin';
 import { mapState, mapGetters } from 'vuex';
 import * as FETCH_STATUS from '../contants/fetchStatus';
 
@@ -23,12 +23,6 @@ export default {
   initialData: async function ({ store, route }) {
     const { title } = route.params;
     await store.dispatch('loadArticle', title);
-  },
-
-  mixins: [titleMixin],
-  title: function () {
-    console.log(this.$route)
-    return this.$route.params.title;
   },
 
   data: () => ({
@@ -47,21 +41,21 @@ export default {
   },
 }
 </script>
-<style lang="scss" scoped>
+<style lang="postcss" scoped>
 @media (max-width: 1023px) {
   .article-page {
     width: 80vw;
   }
 
-  header {
+  & header {
     padding-top: 30%;
 
-    img {
+    & img {
       width: 128rem;
       height: 128rem;
     }
 
-    h1 {
+    & h1 {
       font-size: 36rem;
       margin-top: 60rem;
       margin-bottom: 40rem;
@@ -77,12 +71,12 @@ export default {
   header {
     padding-top: 160px;
 
-    img {
+    & img {
       width: 128px;
       height: 128px;
     }
 
-    h1 {
+    & h1 {
       font-size: 36px;
       margin-top: 60px;
       margin-bottom: 40px;
@@ -97,5 +91,4 @@ export default {
 header {
   text-align: center;
 }
-
 </style>

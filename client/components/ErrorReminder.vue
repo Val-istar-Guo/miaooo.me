@@ -10,13 +10,13 @@
 export default {
 }
 </script>
-<style lang="scss" scoped>
+<style lang="postcss" scoped>
 .absolute-center {
   height: 100vh;
   width: 100vw;
   position: relative;
 
-  > div {
+  & > div {
     margin: auto;
     position: absolute;
     top: 40%;
