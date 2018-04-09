@@ -47,8 +47,7 @@ export default {
 
 @media (max-width: 1023px) {
   .markdown-article {
-    $font-size: 24rem;
-    font-size: $font-size;
+    font-size: 24rem;
     font-weight: 300;
     line-height: 1.7;
 
@@ -65,7 +64,7 @@ export default {
     }
 
     & p {
-      text-indent: 2 * $font-size;
+      text-indent: 48rem;
       text-align: justify;
     }
   }
