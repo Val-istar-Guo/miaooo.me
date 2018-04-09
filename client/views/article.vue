@@ -1,6 +1,6 @@
 <template>
   <div>
-    <document-title>{this.$route.params.title}</document-title>
+    <document-title>{{this.$route.params.title}}</document-title>
     <div v-if="loadStatus === FETCHING" >Loading</div>
     <div v-else-if="loadStatus === FETCH_FAIL">
       <error-reminder>{{loadError.message}}</error-reminder>
