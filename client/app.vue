@@ -15,7 +15,7 @@ export default {
 
 @media (max-width: 1023px) {
   html {
-    font-size: (24 / 36) + px;
+    font-size: calc(24px / 36);
   }
 }
 </style>
