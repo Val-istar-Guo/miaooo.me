@@ -32,12 +32,24 @@ export default {
     color: #333;
   }
 
+  & code {
+    background: #f7f7f7;
+    border-radius: 2px;
+    padding: 4px;
+  }
+
   & pre {
     overflow-x: auto;
     font-size: 16px;
     line-height: 1.6;
     background: #f7f7f7;
     padding: 10px 20px;
+
+    & code {
+      background: initial;
+      border-radius: initial;
+      padding: initial;
+    }
   }
 
   & pre * {
