@@ -47,7 +47,7 @@ export default {
     width: 80vw;
   }
 
-  & header {
+  header {
     padding-top: 30%;
 
     & img {
