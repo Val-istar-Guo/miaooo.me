@@ -18,15 +18,28 @@
     "deploy": "npm run deploy:stage",
     "deploy:stage": "pm2 deploy ecosystem.config.js stage",
     "deploy:prod": "pm2 deploy ecosystem.config.js prod",
-    "analyzer": "NODE_ENV=production ANALYZER=true webpack"
+    "analyzer": "NODE_ENV=production ANALYZER=true webpack",
+    "upgrade": "mili upgrade"
+  },
+  "engines": {
+    "node": ">=8.9.4"
   },
   "mili": {
-    "type": "web"
+    "type": "web",
+    "encoding": "utf8"
+  },
+  "deploy": {
+    "user": "jumper",
+    "host": "miaooo.me",
+    "prod": { "port": 6001 },
+    "dev": { "port": 5001 }
   },
   "devDependencies": {
+    "mili": "0.0.1-alpha.9",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
     "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-register": "^6.26.0",
@@ -36,7 +49,6 @@
     "html-loader": "^0.5.5",
     "koa-webpack": "^3.0.2",
     "memory-fs": "^0.4.1",
-    "mili": "0.0.1-alpha.5",
     "pm2": "^2.10.2",
     "postcss-cssnext": "^3.1.0",
     "postcss-import": "^11.1.0",
@@ -63,7 +75,7 @@
     "koa-csp": "^1.0.11",
     "koa-logger": "^3.2.0",
     "koa-router": "^7.4.0",
-    "koa-static": "^4.0.1",
+    "koa-static": "^4.0.2",
     "lodash": "^4.17.5",
     "md-core": "^1.2.0",
     "md-plugins-vig": "^1.2.1",

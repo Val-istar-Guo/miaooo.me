@@ -6,17 +6,12 @@
 
 <script>
 import './components';
+
+
 export default {
 }
 </script>
 
-<style lang="postcss">
+<style>
 @import './styles/index.css';
-
-@media (max-width: 1023px) {
-  html {
-    font-size: calc(24px / 36);
-  }
-}
 </style>
-

@@ -2,8 +2,7 @@
 .DS_Store
 
 # Editor
-.vscode/
-*.swp # vim
+.vscode
 
 # NodeJS
 node_modules
@@ -14,6 +13,10 @@ yarn-error.log
 
 # Compile
 dist
+views/index.*.html
+
+# Vim
+*.swp
 
 # Lock
 yarn.lock

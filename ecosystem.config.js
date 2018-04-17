@@ -1,22 +1,27 @@
 // PM2 Config
-const path = require('path');
+const { join } = require('path')
 
 
-const { name: APP_NAME, repository: REPO } = require('./package.json');
-const serverPath = path.join('/var/www', APP_NAME);
-const user = 'jumper';
-const host = 'miaooo.me';
+const { name: APP_NAME, repository: REPO, deploy = {} } = require('./package.json')
+const serverPath = join('/var/www', APP_NAME)
+let { user, host, port, prod, dev } = deploy
+
+if (!(
+  (prod.user || user) && (prod.host || host) && (prod.port || port) &&
+  (dev.user || user) && (dev.host || host) && (dev.port || port)
+)) {
+  throw new Error('package.deploy should be be set correctly, please check your package.json')
+}
 
 module.exports = {
   apps: [
     {
-      name: `${APP_NAME}-stage`,
+      name: `${APP_NAME}-dev`,
       script: './dist/server/bundle.js',
       source_map_support: true,
 
-      env_stage: {
-        PORT: 5001,
-        HOST: '127.0.0.1',
+      env_dev: {
+        PORT: dev.port || port,
       },
     },
     {
@@ -24,8 +29,7 @@ module.exports = {
       script: './dist/server/bundle.js',
 
       env_prod: {
-        PORT: 6001,
-        HOST: '127.0.0.1',
+        PORT: prod.port || port,
       },
     },
   ],
@@ -36,24 +40,20 @@ module.exports = {
       host,
       ref: 'origin/master',
       repo: REPO,
-      path: path.join(serverPath, 'prod'),
+      path: join(serverPath, 'prod'),
       'post-deploy': `npm i; npm run build:prod; pm2 startOrRestart ecosystem.config.js --only ${APP_NAME}-prod --env prod`,
 
-      env: {
-        NODE_ENV: 'prod',
-      },
+      env: { NODE_ENV: 'prod' },
     },
-    stage: {
+    dev: {
       user,
       host,
       ref: 'origin/dev',
       repo: REPO,
-      path: path.join(serverPath, 'stage'),
-      'post-deploy': `npm i; npm run build:prod; pm2 startOrRestart ecosystem.config.js --only ${APP_NAME}-stage --env stage`,
+      path: join(serverPath, 'dev'),
+      'post-deploy': `npm i; npm run build:prod; pm2 startOrRestart ecosystem.config.js --only ${APP_NAME}-dev --env dev`,
     },
 
-    env: {
-      NODE_ENV: 'stage',
-    },
+    env: { NODE_ENV: 'dev' },
   },
-};
+}
