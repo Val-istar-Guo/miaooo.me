@@ -20,6 +20,9 @@
     "deploy:prod": "pm2 deploy ecosystem.config.js prod",
     "analyzer": "NODE_ENV=production ANALYZER=true webpack"
   },
+  "mili": {
+    "type": "web"
+  },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
@@ -33,6 +36,7 @@
     "html-loader": "^0.5.5",
     "koa-webpack": "^3.0.2",
     "memory-fs": "^0.4.1",
+    "mili": "0.0.1-alpha.5",
     "pm2": "^2.10.2",
     "postcss-cssnext": "^3.1.0",
     "postcss-import": "^11.1.0",
