@@ -1,6 +1,7 @@
+// mili upgrade type: cover
 // Client entry file
-import Vue from 'vue';
-import createApp from './createApp';
+import Vue from 'vue'
+import createApp from './createApp'
 
 
 Vue.mixin({
@@ -13,29 +14,30 @@ Vue.mixin({
         route: to,
       })
       .then(next)
-      .catch(next);
+      .catch(next)
     } else {
-      next();
+      next()
     }
   }
-});
+})
 
-const { app, store } = createApp();
+const { app, store, router } = createApp()
 
-if (window.__INITIAL_STATE__) {
-  store.replaceState(window.__INITIAL_STATE__);
-}
+if (window.__INITIAL_STATE__) store.replaceState(window.__INITIAL_STATE__)
 
-app.$mount('#app');
+router.onReady(() => {
+  app.$mount('#app', true)
 
-Vue.mixin({
-  beforeMount () {
-    const { initialData } = this.$options
-    if (initialData) {
-      initialData.call(this, {
-        store: this.$store,
-        route: this.$route,
-      });
-    }
-  },
-});
+  Vue.mixin({
+    beforeMount () {
+      const { initialData } = this.$options
+      if (initialData) {
+        this.dataPromise = initialData.call(this, {
+          store: this.$store,
+          route: this.$route,
+        })
+      }
+    },
+  })
+})
+

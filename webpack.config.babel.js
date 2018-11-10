@@ -1,3 +1,4 @@
+// mili upgrade type: cover
 import server from './build/webpack.config.server.js';
 import client from './build/webpack.config.client.js';
 import ssr from './build/webpack.config.ssr.js';

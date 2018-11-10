@@ -1,3 +1,4 @@
+// mili upgrade type: cover
 import fs from 'fs';
 import chalk from 'chalk';
 import Router from 'koa-router';
@@ -37,4 +38,3 @@ router
   .get('/:favicon([^\/]+\\.png)', respondFavicon)
 
 export default router;
-

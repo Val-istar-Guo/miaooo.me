@@ -1,3 +1,6 @@
-# MIAOOO.ME
+# miaooo.me
 
-欢迎光临，个人网站[miaooo.me](miaooo.me)代码仓库
+[![dependencies](https://img.shields.io/david/Val-istar-Guo/miaooo.me.svg?style=flat-square)](https://www.npmjs.com/package/miaooo.me)
+
+
+<!-- custom --><!-- custom -->

@@ -1,3 +1,4 @@
+// mili upgrade type: cover
 const fs = require('fs');
 const { resolve, join } = require('path');
 const chalk = require('chalk');
@@ -5,35 +6,24 @@ const webpack = require('webpack');
 const MemoryFileSystem = require('memory-fs');
 const requireFromString = require('require-from-string');
 require('source-map-support').install();
+require('@babel/polyfill');
+require('@babel/register')();
 
-
-require('babel-polyfill');
-require('babel-register')({
-  presets: [
-    ['env', {
-      targets: { node: 'current' },
-      useBuiltIns: true,
-    }],
-  ],
-  plugins: [
-    'transform-object-rest-spread',
-    'add-module-exports',
-  ],
-});
 
 // Compatible with MemoryFileSystem
 const readFile = (fs, file) => {
   try {
     return fs.readFileSync(file, 'utf-8');
-  } catch (e) {
-    console.log(chalk.red(`[Server Engine] readFileError:(${file}) ${e.message}`));
+  } catch (err) {
+    log.error('read file', `filename: ${file}`, err);
   }
 }
 
-const Server = require('./server');
+const Server = require('./server').default;
 
 // init compiler
-const { ssrFilename, manifestFilename } = require('../build.config');
+const loadBuildConfig = require('./loadBuildConfig').default
+const { ssrFilename, manifestFilename } = loadBuildConfig()
 
 const PORT = process.env.PORT || 8080;
 const HOST = process.env.HOST || '0.0.0.0';
@@ -44,7 +34,7 @@ const server = new Server(PORT, HOST);
  * NOTE devConfig used to make template
  *      and make webpack dev middleware
  */
-const devConfig = require('./webpack.config.client');
+const devConfig = require('./webpack.config.client').default;
 const devCompiler = webpack(devConfig);
 server.devCompiler = devCompiler;
 
@@ -75,7 +65,7 @@ devCompiler.plugin('done', stats => {
  * NOTE ssrConfig used to make vue ssr bundle json file.
  *      It is must after devConfig because replay file template
  */
-const ssrConfig = require('./webpack.config.ssr');
+const ssrConfig = require('./webpack.config.ssr').default;
 const ssrCompiler = webpack(ssrConfig);
 
 const ssrMfs = new MemoryFileSystem();
@@ -98,7 +88,7 @@ ssrCompiler.watch({}, (err, stats) => {
   ));
 });
 
-const serverConfig = require('./webpack.config.server');
+const serverConfig = require('./webpack.config.server').default;
 const serverCompiler = webpack(serverConfig);
 
 const serverMfs = new MemoryFileSystem();

@@ -1,8 +1,10 @@
+# mili upgrade type: cover
 # Mac
 .DS_Store
 
 # Editor
 .vscode
+*.swp
 
 # NodeJS
 node_modules
@@ -14,9 +16,6 @@ yarn-error.log
 # Compile
 dist
 views/index.*.html
-
-# Vim
-*.swp
 
 # Lock
 yarn.lock

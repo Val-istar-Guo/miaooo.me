@@ -1,4 +1,4 @@
-import path from 'path'
+// mili upgrade type: cover
 import webpack from 'webpack'
 import env from 'detect-env'
 import merge from 'webpack-merge'
@@ -6,9 +6,10 @@ import VueSSRClientPlugin from 'vue-server-renderer/client-plugin'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 
-import config from '../build.config'
+import loadBuildConfig from './loadBuildConfig';
 import common from './webpack.config.common'
 
+const config = loadBuildConfig()
 
 const plugins = [
   new VueSSRClientPlugin({
@@ -32,7 +33,7 @@ if (process.env.ANALYZER) plugins.push(new BundleAnalyzerPlugin())
 
 export default merge(common, {
   entry: {
-    bundle: ['babel-polyfill', './client/entry-client'],
+    bundle: ['@babel/polyfill', './client/entry-client'],
   },
 
   output: {
@@ -42,7 +43,7 @@ export default merge(common, {
 
   resolve: {
     alias: {
-      ...config.nonIsomorphicModule,
+      ...config.ssrMockModules,
     },
   },
 

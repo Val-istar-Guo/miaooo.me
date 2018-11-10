@@ -1,17 +1,17 @@
-<template lang="html">
+<template>
   <div id='app'>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import './components';
+import './components'
 
 
 export default {
 }
 </script>
 
-<style>
+<style lang="postcss" scoped>
 @import './styles/index.css';
 </style>

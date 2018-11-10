@@ -1,10 +1,5 @@
-import Vue from 'vue';
-import documentTitle from 'framework/components/documentTitle';
-
-import ErrorReminder from './ErrorReminder';
-import MarkdownArticle from './MarkdownArticle';
+import Vue from 'vue'
+import documentTitle from 'framework/components/documentTitle'
 
 
-Vue.component('document-title', documentTitle);
-Vue.component('error-reminder', ErrorReminder);
-Vue.component('markdown-article', MarkdownArticle);
+Vue.component('document-title', documentTitle)
