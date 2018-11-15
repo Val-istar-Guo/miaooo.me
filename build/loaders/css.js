@@ -5,7 +5,7 @@ const postcssLoader = {
   loader: 'postcss-loader',
   options: {
     ident: 'postcss',
-    plugins: () => [postcssPresetEnv({ stage: 0 })],
+    plugins: () => [ postcssPresetEnv({ stage: 0 }) ],
   },
 }
 

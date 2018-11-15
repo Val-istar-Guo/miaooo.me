@@ -1,7 +1,5 @@
 import env from 'detect-env'
-
-import * as MUTATIONS from '../contants/mutations'
-import { FETCH_STATUS } from '../contants/status'
+import request from 'superagent';
 
 
 const fetch = () => new Promise(resolve => setTimeout(resolve, 4000))
@@ -9,35 +7,40 @@ const fetch = () => new Promise(resolve => setTimeout(resolve, 4000))
 export default {
   strict: env.is.prod ? false : true,
 
-  modules: {
-  },
-
   state: {
-    isload: false,
-    value: '',
+    catalog: [],
+    article: {},
   },
 
   actions: {
-    fetchValue: async ({ state, commit }, payload) => {
-      // needless dispatch
-      // if (state.value === payload) return
+    fetchCatalog: async ({ state, commit }) => {
+      if (state.catalog.length) return
 
-      console.log('fetching value', payload)
-      commit(MUTATIONS.UPDATE_FETCH_STATE, FETCH_STATUS.FETCHING)
-      await fetch()
-      console.log('fetched value', payload)
-      commit(MUTATIONS.UPDATE_FETCH_STATE, FETCH_STATUS.FETCHED)
-      commit(MUTATIONS.UPDATE_VALUE, payload)
+      try {
+        const catalog = await request
+          .get('/api/tree')
+          .then(res => res.body)
+
+        console.log(catalog)
+        commit('LOAD_CATELOG', catalog)
+      } catch (err) {
+        console.log(err)
+      }
     }
   },
 
   mutations: {
-    [MUTATIONS.UPDATE_VALUE](state, payload) {
-      state.value = payload
+    LOAD_CATELOG: (state, catalog) => {
+      state.catalog = catalog
     },
-    [MUTATIONS.UPDATE_FETCH_STATE](state, payload) {
-      state.isload = payload === FETCH_STATUS.FETCHED
+    LOAD_ARTICLE: (state, catalog) => {
+      // return { ...state, catalog }
     },
+    // [MUTATIONS.UPDATE_VALUE](state, payload) {
+    //   state.value = payload
+    // },
+    // [MUTATIONS.UPDATE_FETCH_STATE](state, payload) {
+    //   state.isload = payload === FETCH_STATUS.FETCHED
+    // },
   },
-
 }

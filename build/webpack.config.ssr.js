@@ -1,12 +1,12 @@
 // mili upgrade type: cover
-import path from 'path';
-import webpack from 'webpack';
-import merge from 'webpack-merge';
+import path from 'path'
+import webpack from 'webpack'
+import merge from 'webpack-merge'
 
-import nodeExternals from 'webpack-node-externals';
-import { VueSSRServerPlugin } from 'vue-ssr-webpack-plugin';
+import nodeExternals from 'webpack-node-externals'
+import { VueSSRServerPlugin } from 'vue-ssr-webpack-plugin'
 
-import common from './webpack.config.common';
+import common from './webpack.config.common'
 import loadBuildConfig from './loadBuildConfig'
 
 
@@ -15,7 +15,7 @@ function emptyPackage(list) {
   return Object.keys(list).reduce((emptyList, alias) => ({
     ...emptyList,
     [alias]: path.resolve(__dirname, 'empty'),
-  }), {});
+  }), {})
 }
 
 export default merge(common, {
@@ -37,4 +37,4 @@ export default merge(common, {
       filename: config.ssrFilename,
     }),
   ],
-});
+})
