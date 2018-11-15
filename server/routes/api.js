@@ -7,7 +7,7 @@ const router = new Router({ prefix: '/api' })
 
 const githubAPI = api => `https://api.github.com/repos/Val-istar-Guo/article/git/${api}`
 const urls = {
-  blob: (host, item) => `${host}/api/article/${item.name}`,
+  blob: (host, item) => `${host}/api/article/${item.title}`,
   tree: (host, item) => `${host}/api/tree/${item.sha}`,
 }
 
@@ -29,9 +29,9 @@ const getArticleFolderTree = async () => {
   return articleFolderTree
 }
 
-const decodeArticleName = path => {
-  const [, order, name] = path.match(/^(\d+)\.(.+)\.md$/)
-  return { order, name }
+const decodeArticleTitle = path => {
+  const [, order, title] = path.match(/^(\d+)\.(.+)\.md$/)
+  return { order, title }
 }
 
 router
@@ -46,11 +46,11 @@ router
     const articles = articlesTree.tree
       .filter(item => item.type === 'blob' && /^(\d+)\.(.+)\.md$/.test(item.path))
       .map(item => {
-        const { order, name } = decodeArticleName(item.path)
+        const { order, title } = decodeArticleTitle(item.path)
         return {
           ...item,
           order,
-          name,
+          title,
         }
       })
       .map(item => ({
@@ -58,7 +58,7 @@ router
         url: urls[item.type](ctx.host, item),
       }))
       .sort((a, b) => a.order > b.order)
-      .map(({ name, type, url }) => ({ name, type, url }))
+      .map(({ title, type, url }) => ({ title, type, url }))
 
     ctx.body = articles
   })
@@ -95,8 +95,8 @@ router
     }
 
     let artBlob = tree.tree.find(item => {
-      const { name } = decodeArticleName(item.path)
-      return name === paths[paths.length - 1]
+      const { title } = decodeArticleTitle(item.path)
+      return title === paths[paths.length - 1]
     })
 
     if (artBlob.type !== 'blob') ctx.throw(404)
