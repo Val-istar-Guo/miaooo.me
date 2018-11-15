@@ -5,7 +5,9 @@
       <h1 class="title">Val.istar.Guo</h1>
     </header>
 
-    <ul class="list">
+    <loading v-if="loading" />
+
+    <ul v-else class="list">
       <li class="item" v-for="(item, index) of catalog" :key="index">
         <span class="content">{{item.title}}</span>
       </li>
@@ -18,6 +20,12 @@ import { mapState } from 'vuex'
 export default {
   mounted() {
     this.$store.dispatch('fetchCatalog')
+      .then(() => this.loading = false)
+  },
+  data() {
+    return {
+      loading: true,
+    }
   },
   computed: {
     ...mapState(['catalog']),
