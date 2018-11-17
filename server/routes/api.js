@@ -69,7 +69,7 @@ router
 
     ctx.body = tree
   })
-  .get('/article/:paths', async ctx => {
+  .get('/article/:paths+', async ctx => {
     const articleFolderTree = await getArticleFolderTree()
     if (!articleFolderTree) ctx.throw('文章存储系统崩溃，请反馈给管理员 <val.istar.guo@gmail.com>')
 
@@ -82,9 +82,8 @@ router
 
     const len = paths.length - 1
     for (let i = 0; i++; i < len && tree) {
-      console.log(tree)
       let subtree = tree.tree.find(item => item.path === paths[i])
-      if (subtree.type !== 'tree') {
+      if (!subtree || subtree.type !== 'tree') {
         tree = null
         ctx.throw(404)
       }
@@ -99,14 +98,17 @@ router
       return title === paths[paths.length - 1]
     })
 
-    if (artBlob.type !== 'blob') ctx.throw(404)
+    if (!artBlob || artBlob.type !== 'blob') ctx.throw(404)
 
     artBlob = await request
       .get(artBlob.url)
       .then(res => res.body)
 
     const article = new Buffer(artBlob.content, 'base64').toString()
-    ctx.body = article
+    ctx.body = {
+      path: ctx.params.paths,
+      content: article,
+    }
   })
 
 export default router
