@@ -93,9 +93,10 @@ router
         .then(res => res.body)
     }
 
+    const title = paths[paths.length - 1]
+
     let artBlob = tree.tree.find(item => {
-      const { title } = decodeArticleTitle(item.path)
-      return title === paths[paths.length - 1]
+      return title === decodeArticleTitle(item.path).title
     })
 
     if (!artBlob || artBlob.type !== 'blob') ctx.throw(404)
@@ -108,6 +109,7 @@ router
     ctx.body = {
       path: ctx.params.paths,
       content: article,
+      title,
     }
   })
 
