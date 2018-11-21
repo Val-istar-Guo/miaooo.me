@@ -13,7 +13,7 @@ const server = new Koa();
 
 server
   .use(logger())
-  .use(csp(config.csp))
+  // .use(csp(config.csp))
   .use(router.routes());
 
 export default server;

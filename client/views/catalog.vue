@@ -9,7 +9,7 @@
 
     <ul v-else class="list">
       <li class="item" v-for="(item, index) of catalog" :key="index">
-        <span class="content">{{item.title}}</span>
+        <router-link class="content" :to="`/article/${item.title}`">{{item.title}}</router-link>
       </li>
     </ul>
   </div>
@@ -68,16 +68,18 @@ header {
     background: #fff;
     border-bottom: 1px solid #f6f6f6;
 
-    padding: 30px 30px;
-    font-size: 20px;
     cursor: pointer;
     user-select: none;
     white-space: nowrap;
-    text-overflow: ellipsis;
-
-    font-family: monospace;
 
     & .content {
+      text-overflow: ellipsis;
+      font-size: 20px;
+      font-family: monospace;
+      text-decoration: none;
+
+      color: #333;
+      padding: 30px 30px;
       display: inline-block;
       transform: translateX(0);
       transition: transform .3s;

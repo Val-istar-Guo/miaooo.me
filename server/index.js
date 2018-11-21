@@ -3,6 +3,7 @@ import fs from 'fs'
 import { resolve, join } from 'path'
 import chalk from 'chalk'
 import staticServer from 'koa-static'
+import { HOST, PORT } from 'framework/constants'
 
 import server from './server'
 import loadBuildConfig from '../build/loadBuildConfig'
@@ -10,9 +11,6 @@ import ssr from './middleware/vue-server-render'
 
 
 const { title, ssrFilename, manifestFilename } = loadBuildConfig()
-
-const PORT = process.env.PORT || 8080
-const HOST = process.env.HOST || '0.0.0.0'
 const clientDir = resolve(__dirname, '../client')
 
 server
