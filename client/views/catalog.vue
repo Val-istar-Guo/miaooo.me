@@ -1,7 +1,7 @@
 <template>
   <div>
     <header>
-      <img class="logo" src="../images/logo@10x.jpg" alt="logo" />
+      <img class="logo" src="../images/logo@10x.svg" alt="logo" />
       <h1 class="title">Val.istar.Guo</h1>
     </header>
 

@@ -1,7 +1,8 @@
 <template>
   <div class="page">
     <div class="nav">
-      <img class="logo" src="../images/logo_without_white.jpg" alt="logo" />
+      <img class="logo" src="../images/logo_without_white.svg" alt="logo" />
+
       <span class="name">Val-istar-Guo</span>
     </div>
 
