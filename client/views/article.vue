@@ -5,8 +5,9 @@
       <span class="name">Val-istar-Guo</span>
     </div>
 
-    <loading v-if="loading" />
-    <article v-else class="article" v-html="content" />
+    <loading-container :loading="loading">
+      <article class="article" v-html="content" />
+    </loading-container>
 
     <footer>©2018 Val-istar-Guo</footer>
   </div>
@@ -37,6 +38,10 @@ export default {
   margin: 0 auto;
   /* padding-top: 180px; */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.loading-container {
+  min-height: 60vh;
 }
 
 .nav {

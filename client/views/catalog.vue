@@ -5,13 +5,13 @@
       <h1 class="title">Val.istar.Guo</h1>
     </header>
 
-    <loading v-if="loading" />
-
-    <ul v-else class="list">
-      <li class="item" v-for="(item, index) of catalog" :key="index">
-        <router-link class="content" :to="`/article/${item.title}`">{{item.title}}</router-link>
-      </li>
-    </ul>
+    <loading-container :loading="loading">
+      <ul class="list">
+        <li class="item" v-for="(item, index) of catalog" :key="index">
+          <router-link class="content" :to="`/article/${item.title}`">{{item.title}}</router-link>
+        </li>
+      </ul>
+    </loading-container>
   </div>
 </template>
 <script>
@@ -55,6 +55,10 @@ header {
     font-size: 32px;
     font-weight: lighter;
   }
+}
+
+.loading-container {
+  min-height: 50vh;
 }
 
 .list {
