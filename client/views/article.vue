@@ -150,6 +150,11 @@ footer {
     }
   }
 
+  & a {
+    color: #F95959;
+    text-decoration: none;
+  }
+
   & > p {
     text-indent: 2em;
   }
