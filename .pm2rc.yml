@@ -1,6 +1,7 @@
-user: user
-port: 0
+user: jumper
+port: 6001
 prod:
-  host: host
+  host: miaooo.me
+  path: /var/www/miaooo.me/prod
 test:
   host: test.host
