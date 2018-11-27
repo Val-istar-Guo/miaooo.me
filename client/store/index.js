@@ -5,7 +5,7 @@ import markdown from 'remark-parse'
 import remark2rehype from 'remark-rehype'
 import html from 'rehype-stringify'
 import imageLinkCorrect from '../utils/imageLinkCorrect'
-import highlightCode from '../utils/highlightCode'
+import highlightCode from 'rehype-prism'
 
 
 const processor = unified()

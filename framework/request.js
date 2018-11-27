@@ -7,13 +7,10 @@ import { PORT, HOST } from './constants'
 export default request
   .agent()
   .use(request => {
-    console.log(process.env.WEB_CONTAINER)
     if (process.env.WEB_CONTAINER === 'ssr' && request.url[0] === '/') {
       const host = HOST === '0.0.0.0' ? '127.0.0.1' : HOST
       request.url = `${host}:${PORT}${request.url}`
     }
-
-    console.log(request)
 
     return request;
   })

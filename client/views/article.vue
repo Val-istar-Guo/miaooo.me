@@ -14,6 +14,7 @@
   </div>
 </template>
 <script>
+import 'prismjs/themes/prism-coy.css'
 import { mapState } from 'vuex';
 
 
@@ -34,6 +35,7 @@ export default {
 }
 </script>
 <style lang="postcss" scoped>
+
 .page {
   width: 1024px;
   margin: 0 auto;
