@@ -20,6 +20,20 @@
     "ca": "git add -A && git-cz -av",
     "commit": "git-cz"
   },
+  "description": "Blog of Val.istar.Guo",
+  "version": "4.0.0",
+  "repository": "https://github.com/Val-istar-Guo/miaooo.me.git",
+  "keywords": [
+    "miaooo.me",
+    "Val.istar.Guo",
+    "Val-istar-Guo",
+    "blog"
+  ],
+  "author": "Val.istar.Guo <val.istar.guo@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/Val-istar-Guo/miaooo.me/issues"
+  },
+  "homepage": "https://github.com/Val-istar-Guo/miaooo.me#readme",
   "engines": {
     "node": ">=10.13.0"
   },
