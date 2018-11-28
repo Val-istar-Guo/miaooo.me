@@ -1,9 +1,10 @@
 import Router from 'koa-router'
 import request from 'superagent'
+import githubAuthKey from '../utils/githubAuthKey'
 
 
+console.log(`token ${githubAuthKey}`)
 const router = new Router({ prefix: '/api' })
-
 
 const githubAPI = api => `https://api.github.com/repos/Val-istar-Guo/article/git/${api}`
 const urls = {
@@ -14,14 +15,17 @@ const urls = {
 const getArticleFolderTree = async () => {
   const ref = await request
     .get(githubAPI('refs/heads/master'))
+    .set('Authorization', `token ${githubAuthKey}`)
     .then(res => res.body)
 
   const repository = await request
     .get(ref.object.url)
+    .set('Authorization', `token ${githubAuthKey}`)
     .then(res => res.body)
 
   const rootTree = await request
     .get(repository.tree.url)
+    .set('Authorization', `token ${githubAuthKey}`)
     .then(res => res.body)
 
   const articleFolderTree = rootTree.tree.find(item => item.path === 'articles')
@@ -41,6 +45,7 @@ router
 
     const articlesTree = await request
       .get(articleFolderTree.url)
+      .set('Authorization', `token ${githubAuthKey}`)
       .then(res => res.body)
 
     const articles = articlesTree.tree
@@ -65,6 +70,7 @@ router
   .get('/tree/:sha', async ctx => {
     const tree = await request
       .get(githubAPI(`trees/${sha}`))
+      .set('Authorization', `token ${githubAuthKey}`)
       .then(res => res.body)
 
     ctx.body = tree
@@ -75,6 +81,7 @@ router
 
     let tree = await request
       .get(articleFolderTree.url)
+      .set('Authorization', `token ${githubAuthKey}`)
       .then(res => res.body)
 
     const paths = ctx.params.paths.split('/')
@@ -90,6 +97,7 @@ router
 
       tree = request
         .get(subtree.url)
+        .set('Authorization', `token ${githubAuthKey}`)
         .then(res => res.body)
     }
 
@@ -103,6 +111,7 @@ router
 
     artBlob = await request
       .get(artBlob.url)
+      .set('Authorization', `token ${githubAuthKey}`)
       .then(res => res.body)
 
     const article = new Buffer(artBlob.content, 'base64').toString()
