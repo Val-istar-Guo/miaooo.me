@@ -3,7 +3,6 @@ import request from 'superagent'
 import githubAuthKey from '../utils/githubAuthKey'
 
 
-console.log(`token ${githubAuthKey}`)
 const router = new Router({ prefix: '/api' })
 
 const githubAPI = api => `https://api.github.com/repos/Val-istar-Guo/article/git/${api}`
