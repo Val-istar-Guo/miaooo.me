@@ -37,8 +37,6 @@ const sanitize = sa.keys({
   },
 })
 
-console.log(result)
-
 let config = sanitize({
   ...formatEnvOfConfig('prod', result.config),
   ...formatEnvOfConfig('test', result.config),
@@ -46,7 +44,6 @@ let config = sanitize({
 
 if (config.prod.host === config.test.host) throw Error('The host cannot be the same')
 
-console.log(config)
 module.exports = {
   apps: [
     {

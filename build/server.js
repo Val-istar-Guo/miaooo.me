@@ -15,6 +15,8 @@ export default class Server {
     this.__manifest = null
     this.__template = null
     this.__hmrMiddleware = null
+    this.__host = host
+    this.__port = port
 
     // before server code compiled
     this.__requestHandler = (req, res) => {
@@ -71,6 +73,7 @@ export default class Server {
   set devCompiler(value) {
     webpackMiddleware({
       compiler: value,
+      hotClient: { host: { client: '*', server: this.__host} },
       devMiddleware: {
         noInfo: true,
         stats: {
