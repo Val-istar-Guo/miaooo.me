@@ -83,6 +83,7 @@ export default {
       font-size: 20px;
       font-family: monospace;
       text-decoration: none;
+      -webkit-tap-highlight-color:rgba(0,0,0,0);
 
       color: #333;
       padding: 30px 30px;
