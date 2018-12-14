@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="4.2.0"></a>
+# [4.2.0](https://github.com/Val-istar-Guo/miaooo.me/compare/v4.1.0...v4.2.0) (2018-12-14)
+
+
+### Bug Fixes
+
+* ios目录页面点击出现黑色背景 ([c60ca38](https://github.com/Val-istar-Guo/miaooo.me/commit/c60ca38))
+
+
+### Features
+
+* pwa ([714fa72](https://github.com/Val-istar-Guo/miaooo.me/commit/714fa72))
+
+
+
 <a name="4.1.0"></a>
 # [4.1.0](https://github.com/Val-istar-Guo/miaooo.me/compare/v4.0.1...v4.1.0) (2018-12-14)
 
