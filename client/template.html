@@ -9,6 +9,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="format-detection" content="telephone=no">
 
+  <link rel="manifest" href="/manifest.json" />
+
   <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
   <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
@@ -31,5 +33,15 @@
 <body>
   <!--vue-ssr-outlet-->
   <!-- body --><!-- body -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator
+        .serviceWorker
+        .register('/service-worker.js', { scope: '/' })
+        .then(registration =>
+          console.log('ServiceWorker registration successful with scope: ', registration.scope))
+        .catch(err => console.log('ServiceWorker registration failed: ', err));
+    }
+  </script>
 </body>
 </html>
