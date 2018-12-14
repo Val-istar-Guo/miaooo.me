@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header>
+    <header class="header">
       <img class="logo" src="../images/logo@10x.svg" alt="logo" />
       <h1 class="title">Val.istar.Guo</h1>
     </header>
@@ -37,7 +37,9 @@ export default {
 }
 </script>
 <style lang="postcss" scoped>
-header {
+@custom-media --mobile-screen (width <= 750px);
+
+.header {
   margin-top: 60px;
   width: 100%;
   text-align: center;
@@ -89,12 +91,44 @@ header {
       transition: transform .3s;
     }
 
-
     &:hover .content {
       transform: translateX(-10px);
     }
-
   }
 }
+
+@media (--mobile-screen) {
+  .header {
+    margin-top: 10vw;
+    width: 100vw;
+
+    & .logo {
+      width: 32vw;
+      height: 32vw;
+    }
+
+    & .title {
+      margin: 6vw 0 0 0;
+      padding: 0;
+      font-size: 6vw;
+    }
+  }
+
+  .list {
+    margin-top: 8vw;
+
+    & .item {
+      & .content {
+        font-size: 5vw;
+        padding: 6vw 4vw;
+      }
+
+      &:hover .content {
+        transform: translateX(-5px);
+      }
+    }
+  }
+}
+
 
 </style>

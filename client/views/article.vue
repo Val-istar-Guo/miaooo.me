@@ -35,11 +35,11 @@ export default {
 }
 </script>
 <style lang="postcss" scoped>
+@custom-media --mobile-screen (width <= 750px);
 
 .page {
   width: 1024px;
   margin: 0 auto;
-  /* padding-top: 180px; */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
@@ -75,8 +75,27 @@ footer {
   font-size: 18px;
   user-select: none;
 }
+
+@media (--mobile-screen) {
+  .page {
+    width: 92vw;
+    padding: 0 4vw;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  footer {
+    margin: 14vw 0 6vw 0;
+    font-size: 4.8vw;
+  }
+}
+
 </style>
 <style lang="postcss">
+@custom-media --mobile-screen (width <= 750px);
+
 .article {
   font-weight: normal;
   line-height: 1.5;
@@ -164,6 +183,7 @@ footer {
   & img {
     display: inline-block;
     margin: 2em 0;
+    max-width: 90%;
   }
 
   & ul p {
@@ -172,11 +192,11 @@ footer {
   }
 
   & li {
-    padding: .2em 0 .2em .5em;
+    padding: .2em 0;
   }
 
   & ul {
-    margin: 0.2rem 0;
+    margin: 0.2em 0;
   }
 
   & blockquote {
@@ -186,6 +206,7 @@ footer {
     font-weight: normal;
     padding: 0px 20px;
     color: #666;
+    margin: 0;
   }
 
   & code {
@@ -199,14 +220,10 @@ footer {
     font-family: monospace;
   }
 
-  /* & ul {
-    margin: 1em 0;
-  } */
-
   & pre {
-    /* background: #f3f3f3; */
-    padding: 2rem;
+    padding: 1em 2em;
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
 
     & code {
       background: transparent;
@@ -214,5 +231,67 @@ footer {
   }
 }
 
+@media (--mobile-screen) {
+.article {
+  font-size: 4.8vw;
+
+  & > h1 {
+    font-size: 8vw;
+    font-weight: bolder;
+    margin: 16vw 0 0 0;
+  }
+
+  & > h6 {
+    font-size: 4vw;
+    margin: 4vw 0 10vw 0;
+    color: #999;
+    line-height: 1;
+  }
+
+  & h2 {
+    position: relative;
+    font-size: 5.6vw;
+    margin: 9vw 0 5.6vw 2vw;
+
+    &::before {
+      left: -2vw;
+      width: 1vw;
+      height: 1vw;
+    }
+  }
+
+  & h3 {
+    font-size: 5.2vw;
+    margin: 6.6vw 0 4vw 2vw;
+
+    &::before {
+      left: -2vw;
+      width: 1vw;
+      height: 1vw;
+    }
+
+    &::after {
+      top: 2vw;
+      left: -2vw;
+      width: 1vw;
+      height: 1vw;
+    }
+  }
+
+  & blockquote {
+    font-size: 4.2vw;
+    border-left: 1vw solid #F95959;
+    padding: 0 3vw;
+  }
+
+  & code {
+    border-radius: 0.2vw;
+  }
+
+  & pre {
+    box-shadow: 0 0 2vw rgba(0, 0, 0, 0.1);
+  }
+}
+}
 </style>
 
