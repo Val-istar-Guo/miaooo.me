@@ -22,7 +22,6 @@ export default {
   initialData: async function ({ store, route }) {
     const { title } = route.params
     await store.dispatch('fetchArticle', title)
-      .then(() => this.loading = false)
   },
 
   computed: {
