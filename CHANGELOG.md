@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="4.3.0"></a>
+# [4.3.0](https://github.com/Val-istar-Guo/miaooo.me/compare/v4.2.0...v4.3.0) (2018-12-15)
+
+
+### Features
+
+* 将api接口添加到service worker ([6b8deb9](https://github.com/Val-istar-Guo/miaooo.me/commit/6b8deb9))
+
+
+
 <a name="4.2.0"></a>
 # [4.2.0](https://github.com/Val-istar-Guo/miaooo.me/compare/v4.1.0...v4.2.0) (2018-12-14)
 
