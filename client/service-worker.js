@@ -12,3 +12,6 @@ toolbox.router.get('/*.png', toolbox.cacheFirst)
 toolbox.router.get('/*.svg', toolbox.cacheFirst)
 toolbox.router.get('/bundle.*.js', toolbox.cacheFirst)
 toolbox.router.get('/chunk.*.js', toolbox.cacheFirst)
+
+toolbox.router.get('/api/tree', toolbox.networkFirst)
+toolbox.router.get('/api/article/*', toolbox.networkFirst)
