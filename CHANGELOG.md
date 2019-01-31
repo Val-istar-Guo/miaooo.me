@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="4.3.1"></a>
+## [4.3.1](https://github.com/Val-istar-Guo/miaooo.me/compare/v4.3.0...v4.3.1) (2019-01-31)
+
+
+### Bug Fixes
+
+* enable csp ([95f736d](https://github.com/Val-istar-Guo/miaooo.me/commit/95f736d))
+* 文章页面为不存在的属性loading设置值 ([1fa55cc](https://github.com/Val-istar-Guo/miaooo.me/commit/1fa55cc))
+
+
+
 <a name="4.3.0"></a>
 # [4.3.0](https://github.com/Val-istar-Guo/miaooo.me/compare/v4.2.0...v4.3.0) (2018-12-15)
 
