@@ -3,7 +3,7 @@ import path from 'path'
 import env from 'detect-env'
 import nodeExternals from 'webpack-node-externals'
 
-import loadBuildConfig from './loadBuildConfig'
+import loadBuildConfig from './load-build-config'
 
 const config = loadBuildConfig()
 
@@ -32,7 +32,23 @@ export default {
     libraryTarget: 'commonjs2',
   },
 
+  module: {
+    rules: [
+      { test: /\.tsx?$/, loader: 'awesome-typescript-loader' },
+      { test: /\.js$/, loader: 'source-map-loader' },
+    ]
+  },
+
   resolve: {
     alias: { ...config.alias },
+    extensions: ['.js', '.ts'],
+  },
+
+  optimization:{
+    /**
+     * minimize may have an impact on the orm framework
+     * e.g. typeorm
+     */
+    minimize: false,
   },
 }

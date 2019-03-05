@@ -3,8 +3,9 @@ import 'normalize.css'
 import Vue from 'vue'
 
 import App from './app'
-import createRouter from './createRouter'
-import createStore from './createStore'
+import createRouter from './create-router'
+import createStore from './create-store'
+import './app-plugins'
 
 
 export default function () {

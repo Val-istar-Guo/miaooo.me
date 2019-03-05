@@ -4,7 +4,7 @@ import webpackMiddleware from 'koa-webpack'
 import chalk from 'chalk'
 
 import vueServerRender from '../server/middleware/vue-server-render'
-import loadBuildConfig from './loadBuildConfig'
+import loadBuildConfig from './load-build-config'
 
 
 const buildConfig = loadBuildConfig()
@@ -94,6 +94,7 @@ export default class Server {
     const { __server, __hmrMiddleware, __renderMiddleware, __requestHandler } = this
 
     __server.removeListener('request', __requestHandler)
+    process.emit('rebuild')
     this.__requestHandler = server
       .use(async (ctx, next) => {
         if (!__hmrMiddleware) ctx.body = '⌛️ WAITTING FOR COMPLIATION! REFRESH IN A MOMENT'

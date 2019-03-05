@@ -12,7 +12,7 @@ const processor = unified()
   .use(markdown)
   .use(imageLinkCorrect)
   .use(remark2rehype)
-  .use(highlightCode)
+  .use(highlightCode, { preLangClass: false })
   .use(html)
 
 const parse = str => new Promise((resolve, reject) => {

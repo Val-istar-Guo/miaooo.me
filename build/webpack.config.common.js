@@ -7,15 +7,17 @@ import path from 'path'
 import env from 'detect-env'
 import webpack from 'webpack'
 import VueLoaderPlugin from 'vue-loader/lib/plugin'
-import loadBuildConfig from './loadBuildConfig'
+import loadBuildConfig from './load-build-config'
 
 
 import cssLoader from './loaders/css'
+import tsLoader from './loaders/ts'
 import jsLoader from './loaders/js'
 import fontLoader from './loaders/font'
 import htmlLoader from './loaders/html'
 import vueLoader from './loaders/vue'
 import imageLoader from './loaders/image'
+import pugLoader from './loaders/pug'
 
 
 const config = loadBuildConfig()
@@ -43,17 +45,19 @@ export default {
       //   }]
       // },
       vueLoader,
+      tsLoader,
       jsLoader,
       cssLoader,
       fontLoader,
       htmlLoader,
+      pugLoader,
       imageLoader,
     ],
   },
 
   resolve: {
     alias: config.alias,
-    extensions: ['.js', '.vue'],
+    extensions: ['.js', '.vue', '.ts'],
   },
   plugins: [
     new VueLoaderPlugin(),
