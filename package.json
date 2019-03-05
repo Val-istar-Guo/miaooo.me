@@ -21,7 +21,7 @@
     "release:first": "standard-version --first-release"
   },
   "description": "Blog of Val.istar.Guo",
-  "version": "4.3.2",
+  "version": "4.3.3",
   "repository": "https://github.com/Val-istar-Guo/miaooo.me.git",
   "keywords": [
     "miaooo.me",
