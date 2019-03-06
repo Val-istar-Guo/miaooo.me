@@ -7,6 +7,7 @@ import path from 'path'
 import env from 'detect-env'
 import webpack from 'webpack'
 import VueLoaderPlugin from 'vue-loader/lib/plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import loadBuildConfig from './load-build-config'
 
 
@@ -64,5 +65,9 @@ export default {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     }),
+    new MiniCssExtractPlugin({
+      filename: env.is.prod ? '[name].[hash].css' : '[name].css',
+      chunkFilename: env.is.prod ? '[id].[hash].css' : '[id].css',
+    })
   ],
 }
