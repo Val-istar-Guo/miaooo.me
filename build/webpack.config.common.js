@@ -68,6 +68,6 @@ export default {
     new MiniCssExtractPlugin({
       filename: env.is.prod ? '[name].[hash].css' : '[name].css',
       chunkFilename: env.is.prod ? '[id].[hash].css' : '[id].css',
-    })
+    }),
   ],
 }
