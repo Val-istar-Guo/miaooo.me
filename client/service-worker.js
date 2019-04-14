@@ -4,6 +4,7 @@ importScripts('/sw-toolbox.js')
 toolbox.precache(['/', '/manifest.json'])
 
 toolbox.router.get('/', toolbox.networkFirst)
+toolbox.router.get('/*.css', toolbox.cacheFirst)
 toolbox.router.get('/article/*', toolbox.networkFirst)
 
 toolbox.router.get('/manifest.json', toolbox.cacheFirst)
