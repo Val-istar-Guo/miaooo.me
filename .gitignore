@@ -14,8 +14,8 @@ npm-debug.log*
 yarn-error.log
 
 # Compile
+.nuxt
 dist
-views/index.*.html
 
 # Lock
 yarn.lock

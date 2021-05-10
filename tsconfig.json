@@ -12,11 +12,8 @@
     "checkJs": false,
     "baseUrl": "./",
     "paths": {
-      "framework/*": ["framework/*"]
+      "@/*": ["./"]
     }
   },
-  "include": ["./client/**/*.ts", "./server/**/*.ts"],
-  "paths": {
-    "framework/*": ["./framework/*"],
-  }
+  "include": ["./pages", "./components"]
 }
